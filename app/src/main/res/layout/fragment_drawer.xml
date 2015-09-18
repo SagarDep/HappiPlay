@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.example.mac.myapplication.ui.DrawerFragment">
+
+    <View
+        android:background="@color/menu_color"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/menu_user"
+            style="@style/MenuItemStyle"
+            android:src="@drawable/ic_drawer"/>
+        <ImageButton
+            android:id="@+id/menu_like"
+            style="@style/MenuItemStyle"
+            android:src="@drawable/ic_drawer"/>
+        <ImageButton
+            android:id="@+id/menu_album"
+            style="@style/MenuItemStyle"
+            android:src="@drawable/ic_drawer"/>
+        <ImageButton
+            android:id="@+id/menu_gift"
+            style="@style/MenuItemStyle"
+            android:src="@drawable/ic_drawer"/>
+        <ImageButton
+            android:id="@+id/menu_setting"
+            style="@style/MenuItemStyle"
+            android:src="@drawable/ic_drawer"/>
+    </LinearLayout>
+    <View
+        android:background="@color/menu_color"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+</LinearLayout>

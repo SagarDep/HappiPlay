@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/yons/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-ff746cecd9eabfd65b5142c85e1dde0730dafb5a.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/classes-57c969aa85d62a1ee5c29c0ef428ec01818bbe14.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/classes-8b549d67c9b2f5d34dddf4de26ded0ded6f12af9.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-6876dc27f7006538e3dd4ea3bd7f1586fee931fc.jar" />
+    </item>
+
+</items>
