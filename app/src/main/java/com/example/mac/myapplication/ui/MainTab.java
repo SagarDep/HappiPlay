@@ -1,4 +1,5 @@
 package com.example.mac.myapplication.ui;
+
 import com.example.mac.myapplication.R;
 
 public enum MainTab {
@@ -7,18 +8,17 @@ public enum MainTab {
             HomeFragment.class),
 
     SQUARE(1, R.string.nearby, R.drawable.indicator_square,
-            SquareFragment.class),
+            NearbyFragment.class),
 
     MESSAGE(2, R.string.message, R.drawable.indicator_msg,
             MessageFragment.class);
-
 
     private int index;
     private int resName;
     private int resIcon;
     private Class<?> clz;
 
-    private MainTab(int index, int resName, int resIcon, Class<?> clz) {
+    MainTab(int index, int resName, int resIcon, Class<?> clz) {
         this.index = index;
         this.resName = resName;
         this.resIcon = resIcon;
@@ -57,4 +57,5 @@ public enum MainTab {
         this.clz = clz;
     }
 }
+
 

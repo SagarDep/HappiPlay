@@ -37,8 +37,8 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
     private void initViews(View view) {
         btnUser = view.findViewById(R.id.menu_user);
         btnLike = view.findViewById(R.id.menu_like);
-        btnAlbum=view.findViewById(R.id.menu_album);
-        btnSetting= view.findViewById(R.id.menu_setting);
+        btnAlbum = view.findViewById(R.id.menu_album);
+        btnSetting = view.findViewById(R.id.menu_setting);
         btnUser.setOnClickListener(this);
         btnLike.setOnClickListener(this);
         btnAlbum.setOnClickListener(this);
@@ -48,23 +48,22 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch (view.getId()){
+        intent = new Intent(getActivity(), MenuActivity.class);
+        switch (view.getId()) {
             case R.id.menu_user:
-                intent = new Intent(getActivity(), UserActivity.class);
-                startActivity(intent);
+                intent.putExtra("extra", MenuFragment.USER);
                 break;
             case R.id.menu_album:
-                intent = new Intent(getActivity(), AlbumActivity.class);
-                startActivity(intent);
+                intent.putExtra("extra", MenuFragment.ALBUM);
                 break;
             case R.id.menu_like:
-                intent = new Intent(getActivity(), LikeActivity.class);
-                startActivity(intent);
+                intent.putExtra("extra", MenuFragment.LIKE);
                 break;
             case R.id.menu_setting:
-                intent = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(intent);
+                intent.putExtra("extra", MenuFragment.SETTING);
                 break;
         }
+        startActivity(intent);
+
     }
 }

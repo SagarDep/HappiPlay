@@ -56,10 +56,10 @@ public class HomeFragment extends Fragment implements ViewPagerEx.OnPageChangeLi
     private void initSliderLayout() {
         mSlider = (SliderLayout)view.findViewById(R.id.slider);
         HashMap<String,Integer> file_maps=new HashMap<>();
-        file_maps.put("Hannibal",R.drawable.hannibal);
-        file_maps.put("Big Bang Theory",R.drawable.bigbang);
-        file_maps.put("House of Cards",R.drawable.grid_img2);
-        file_maps.put("Game of Thrones",R.drawable.grid_img5);
+        file_maps.put("Hannibal",R.drawable.banner_nine);
+        file_maps.put("Big Bang Theory",R.drawable.banner_texas);
+        file_maps.put("House of Cards",R.drawable.banner_baccarat);
+        file_maps.put("Game of Thrones",R.drawable.banner_21dot);
 
         for (String name:file_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(mContext);
@@ -97,6 +97,7 @@ public class HomeFragment extends Fragment implements ViewPagerEx.OnPageChangeLi
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
+        //viewPager中图片的点击事件
         Toast.makeText(getActivity(),slider.getBundle().get("extra")+" pressed",Toast.LENGTH_SHORT).show();
     }
 

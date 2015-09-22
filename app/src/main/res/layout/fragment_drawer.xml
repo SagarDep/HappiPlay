@@ -17,22 +17,22 @@
         <ImageView
             android:id="@+id/menu_user"
             style="@style/MenuItemStyle"
-            android:src="@drawable/ic_drawer"/>
+            android:src="@android:drawable/sym_def_app_icon"/>
 
         <ImageView
             android:id="@+id/menu_album"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_album"/>
+            android:src="@drawable/menu_album_selector"/>
 
         <ImageView
             android:id="@+id/menu_like"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_like"/>
+            android:src="@drawable/menu_like_selector"/>
 
         <ImageView
             android:id="@+id/menu_setting"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_setting"/>
+            android:src="@drawable/menu_setting_selector"/>
 
     </LinearLayout>
 

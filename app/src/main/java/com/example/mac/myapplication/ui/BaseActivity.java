@@ -1,12 +1,7 @@
 package com.example.mac.myapplication.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.internal.app.ToolbarActionBar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
@@ -26,12 +21,12 @@ public class BaseActivity extends ActionBarActivity {
     protected int getLayoutId() {
         return 0;
     }
-    protected int getMenuTitleId(){ return 0;}
+    protected int getTitleId(){ return 0;}
 
     private void initToolbar() {
         toolbar= (Toolbar) findViewById(R.id.tb_custom);
-        if (getMenuTitleId()!=0){
-            toolbar.setTitle(getMenuTitleId());
+        if (getTitleId()!=0){
+            toolbar.setTitle(getTitleId());
         }
         setSupportActionBar(toolbar);
         if (getSupportActionBar()!=null){

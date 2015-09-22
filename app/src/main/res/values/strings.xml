@@ -76,4 +76,8 @@
     <string name="album">相冊</string>
     <string name="like">喜歡</string>
     <string name="user">我</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="setting">設置</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="easter_egg">Easter egg!</string>
 </resources>
