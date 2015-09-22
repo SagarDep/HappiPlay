@@ -3,13 +3,13 @@ import com.example.mac.myapplication.R;
 
 public enum MainTab {
 
-    HOME(0, R.string.home, R.drawable.selector_home,
+    HOME(0, R.string.home, R.drawable.indicator_home,
             HomeFragment.class),
 
-    SQUARE(1, R.string.square, R.drawable.selector_square,
+    SQUARE(1, R.string.nearby, R.drawable.indicator_square,
             SquareFragment.class),
 
-    MESSAGE(2, R.string.message, R.drawable.selector_msg,
+    MESSAGE(2, R.string.message, R.drawable.indicator_msg,
             MessageFragment.class);
 
 

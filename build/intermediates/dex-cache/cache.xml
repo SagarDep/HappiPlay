@@ -2,32 +2,74 @@
 <items version="2" >
 
     <item
+        jar="/Users/yons/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-3963291230870621e95d443df519f70787b5f5c8.jar" />
+    </item>
+    <item
+        jar="/Users/yons/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-3963291230870621e95d443df519f70787b5f5c8.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-b4149635af6b2fd9bebff90ef7000feea2c26210.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-4924ab24c5ef8d0157f46c87fc9d324962704b40.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/Project/ImageSlider/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="19fbbaf256a015c62faa0a1ea1e0074998945131">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-4e4093e895987ec2ea3d522c863c1ddcd78940f7.jar" />
+    </item>
+    <item
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/Project/ImageSlider/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="88cefb5869589eac0ec80d0b0b3a6c0ffe1cbd24">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-4e4093e895987ec2ea3d522c863c1ddcd78940f7.jar" />
+    </item>
+    <item
         jar="/Users/yons/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
         jumboMode="false"
-        revision="22.0.0"
+        revision="22.0.1"
         sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-ff746cecd9eabfd65b5142c85e1dde0730dafb5a.jar" />
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-ff746cecd9eabfd65b5142c85e1dde0730dafb5a.jar" />
     </item>
     <item
-        jar="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jar="/Users/yons/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/classes-57c969aa85d62a1ee5c29c0ef428ec01818bbe14.jar" />
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/library-2.4.0-0b40acbaf83ee939e3ae9f168da1400f23460b6e.jar" />
     </item>
     <item
-        jar="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/jars/classes.jar"
+        jar="/Users/yons/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="false"
         revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/classes-8b549d67c9b2f5d34dddf4de26ded0ded6f12af9.jar" />
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/library-2.4.0-0b40acbaf83ee939e3ae9f168da1400f23460b6e.jar" />
     </item>
     <item
-        jar="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Volumes/MAC3/HappiPlay/DrawerMD/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-6876dc27f7006538e3dd4ea3bd7f1586fee931fc.jar" />
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-569c5ba8b357a10cbe2805f17b764920ef7d3de6.jar" />
     </item>
 
 </items>

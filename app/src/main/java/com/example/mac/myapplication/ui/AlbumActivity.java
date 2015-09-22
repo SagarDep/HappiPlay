@@ -5,12 +5,20 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.example.mac.myapplication.R;
 
-public class AlbumActivity extends ActionBarActivity {
+public class AlbumActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_album);
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_album;
+    }
+
+    @Override
+    protected int getMenuTitleId() {
+        return R.string.album;
+    }
 }

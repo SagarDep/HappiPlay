@@ -1,13 +1,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical"
-             tools:context="com.example.mac.myapplication.ui.HomeFragment">
- <TextView
-     android:text="HOME"
-     android:layout_gravity="center"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.example.mac.myapplication.ui.HomeFragment">
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        custom:auto_cycle="true"
+        custom:pager_animation="Default"
+        custom:pager_animation_span="1000"
+        />
+
+    <TextView
+        style="@style/TextLabel"
+        android:text="@string/text_label"
+        />
+    <GridView
+        android:padding="8dp"
+        android:id="@+id/grid_view"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        >
+
+    </GridView>
 
 </LinearLayout>

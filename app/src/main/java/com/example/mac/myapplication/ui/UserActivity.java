@@ -5,11 +5,20 @@ import android.os.Bundle;
 
 import com.example.mac.myapplication.R;
 
-public class UserActivity extends ActionBarActivity {
+public class UserActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_user;
+    }
+
+    @Override
+    protected int getMenuTitleId() {
+        return R.string.user;
     }
 }

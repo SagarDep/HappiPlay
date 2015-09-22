@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.example.mac.myapplication.R;
 
@@ -17,11 +16,10 @@ import com.example.mac.myapplication.R;
  */
 public class DrawerFragment extends Fragment implements View.OnClickListener {
 
-    private ImageButton btnUser;
-    private ImageButton btnLike;
-    private ImageButton btnAlbum;
-    private ImageButton btnGift;
-    private ImageButton btnSetting;
+    private View btnUser;
+    private View btnLike;
+    private View btnAlbum;
+    private View btnSetting;
 
     public DrawerFragment() {
         // Required empty public constructor
@@ -37,17 +35,15 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViews(View view) {
-        btnUser = (ImageButton) view.findViewById(R.id.menu_user);
-        btnGift= (ImageButton) view.findViewById(R.id.menu_gift);
-        btnLike = (ImageButton) view.findViewById(R.id.menu_like);
-        btnSetting= (ImageButton) view.findViewById(R.id.menu_setting);
+        btnUser = view.findViewById(R.id.menu_user);
+        btnLike = view.findViewById(R.id.menu_like);
+        btnAlbum=view.findViewById(R.id.menu_album);
+        btnSetting= view.findViewById(R.id.menu_setting);
         btnUser.setOnClickListener(this);
         btnLike.setOnClickListener(this);
         btnAlbum.setOnClickListener(this);
-        btnGift.setOnClickListener(this);
         btnSetting.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View view) {
@@ -59,10 +55,6 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.menu_album:
                 intent = new Intent(getActivity(), AlbumActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menu_gift:
-                intent = new Intent(getActivity(), GiftActivity.class);
                 startActivity(intent);
                 break;
             case R.id.menu_like:

@@ -6,4 +6,5 @@
     <color name="app_style">#081832</color>
     <color name="menu_color">#0b1222</color>
     <color name="indicator_color">#5391da</color>
+    <color name="round_icon_back">#152942</color>
 </resources>

@@ -3,41 +3,38 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:background="@color/menu_color"
               tools:context="com.example.mac.myapplication.ui.DrawerFragment">
 
-    <View
-        android:background="@color/menu_color"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="@color/menu_color"
+        android:orientation="vertical">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/menu_user"
             style="@style/MenuItemStyle"
             android:src="@drawable/ic_drawer"/>
-        <ImageButton
-            android:id="@+id/menu_like"
-            style="@style/MenuItemStyle"
-            android:src="@drawable/ic_drawer"/>
-        <ImageButton
+
+        <ImageView
             android:id="@+id/menu_album"
             style="@style/MenuItemStyle"
-            android:src="@drawable/ic_drawer"/>
-        <ImageButton
-            android:id="@+id/menu_gift"
+            android:src="@drawable/menu_album"/>
+
+        <ImageView
+            android:id="@+id/menu_like"
             style="@style/MenuItemStyle"
-            android:src="@drawable/ic_drawer"/>
-        <ImageButton
+            android:src="@drawable/menu_like"/>
+
+        <ImageView
             android:id="@+id/menu_setting"
             style="@style/MenuItemStyle"
-            android:src="@drawable/ic_drawer"/>
+            android:src="@drawable/menu_setting"/>
+
     </LinearLayout>
-    <View
-        android:background="@color/menu_color"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
+
+
 </LinearLayout>
