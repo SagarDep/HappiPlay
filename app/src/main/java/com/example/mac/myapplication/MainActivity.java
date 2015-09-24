@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
     private View drawerView;
     private FragmentTabHost mTabhost;
     private MainTab[] tabs;
+    public static boolean isDrawerOpen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +135,7 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         //比如打开菜单时隐藏search按钮
-        boolean isDrawerOpen = mDrawerLayout.isDrawerOpen(drawerView);//drawerView是整個drawer
+        isDrawerOpen = mDrawerLayout.isDrawerOpen(drawerView);//drawerView是整個drawer
         menu.findItem(R.id.action_search).setVisible(!isDrawerOpen);//drawer關閉時則隱藏按鈕
         return super.onPrepareOptionsMenu(menu);
     }

@@ -8,4 +8,5 @@
     <color name="indicator_color">#5391da</color>
     <color name="round_icon_back">#152942</color>
     <color name="round_icon_back_pressed">#081832</color>
+    <color name="sex_male">#6bb0fe</color>
 </resources>
