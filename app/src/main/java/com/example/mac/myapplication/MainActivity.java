@@ -1,9 +1,7 @@
 package com.example.mac.myapplication;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,10 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.internal.app.ToolbarActionBar;
-import android.text.AndroidCharacter;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,14 +20,11 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.example.mac.myapplication.interf.OnTabReselecctListener;
 import com.example.mac.myapplication.ui.BaseActivity;
 import com.example.mac.myapplication.ui.HomeFragment;
 import com.example.mac.myapplication.ui.MainTab;
-
-import java.util.HashMap;
 
 public class MainActivity extends BaseActivity implements View.OnTouchListener, TabHost.OnTabChangeListener {
 
@@ -195,7 +187,7 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
                 toolbar.setTitle(tabs[i].getResName());
             }
         }
-        if (tabId.equals(getString(MainTab.MESSAGE.getResName()))) {
+        if (tabId.equals(getString(MainTab.ACTIVITY.getResName()))) {
             //待加badgeView
         }
     }

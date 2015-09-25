@@ -7,10 +7,10 @@ public enum MainTab {
     HOME(0, R.string.home, R.drawable.indicator_home,
             HomeFragment.class),
 
-    SQUARE(1, R.string.nearby, R.drawable.indicator_square,
+    BEAUTY(1, R.string.beauty, R.drawable.indicator_square,
             NearbyFragment.class),
 
-    MESSAGE(2, R.string.message, R.drawable.indicator_msg,
+    ACTIVITY(2, R.string.activity, R.drawable.indicator_msg,
             MessageFragment.class);
 
     private int index;

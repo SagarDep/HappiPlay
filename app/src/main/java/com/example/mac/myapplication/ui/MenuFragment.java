@@ -9,7 +9,12 @@ import com.example.mac.myapplication.R;
  */
 public enum MenuFragment {
 
-    USER(0, R.string.user,new UserFragment()),ALBUM(1,R.string.album,new AlbumFragment()),LIKE(2,R.string.like,new LikeFragment()),SETTING(3,R.string.setting,new SettingFragment());
+    USER(0, R.string.user,new UserFragment()),
+    ALBUM(1,R.string.album,new AlbumFragment()),
+    LIKE(2,R.string.like,new LikeFragment()),
+    SETTING(3,R.string.setting,new SettingFragment()),
+    NEARBY(4,R.string.nearby,new NearbyFragment()),
+    MSG(5,R.string.message,new MessageFragment());
 
     private int index;
     private int titleId;

@@ -80,4 +80,6 @@
     <string name="setting">設置</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="easter_egg">Easter egg!</string>
+    <string name="beauty">美图</string>
+    <string name="activity">奖品</string>
 </resources>
