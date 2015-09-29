@@ -7,7 +7,7 @@ import com.example.mac.myapplication.R;
 /**
  * Created by yons on 15/9/22.
  */
-public enum MenuFragment {
+public enum MenuFrags {
 
     USER(0, R.string.user,new UserFragment()),
     ALBUM(1,R.string.album,new AlbumFragment()),
@@ -20,7 +20,7 @@ public enum MenuFragment {
     private int titleId;
     private Fragment fragment;
 
-    MenuFragment(int index, int titleId, Fragment fragment) {
+    MenuFrags(int index, int titleId, Fragment fragment) {
         this.index = index;
         this.titleId = titleId;
         this.fragment = fragment;

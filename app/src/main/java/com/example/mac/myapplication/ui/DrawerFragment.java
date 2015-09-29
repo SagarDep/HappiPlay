@@ -58,22 +58,22 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
         intent = new Intent(getActivity(), MenuActivity.class);
         switch (view.getId()) {
             case R.id.menu_user:
-                intent.putExtra("extra", MenuFragment.USER);
+                intent.putExtra("extra", MenuFrags.USER);
                 break;
             case R.id.menu_album:
-                intent.putExtra("extra", MenuFragment.ALBUM);
+                intent.putExtra("extra", MenuFrags.ALBUM);
                 break;
             case R.id.menu_nearby:
-                intent.putExtra("extra", MenuFragment.NEARBY);
+                intent.putExtra("extra", MenuFrags.NEARBY);
                 break;
             case R.id.menu_setting:
-                intent.putExtra("extra", MenuFragment.SETTING);
+                intent.putExtra("extra", MenuFrags.SETTING);
                 break;
             case R.id.menu_like:
-                intent.putExtra("extra", MenuFragment.LIKE);
+                intent.putExtra("extra", MenuFrags.LIKE);
                 break;
             case R.id.menu_msg:
-                intent.putExtra("extra", MenuFragment.MSG);
+                intent.putExtra("extra", MenuFrags.MSG);
                 break;
         }
         startActivity(intent);

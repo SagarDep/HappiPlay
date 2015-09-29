@@ -2,14 +2,16 @@ package com.example.mac.myapplication.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
 import com.example.mac.myapplication.R;
 
 
-public class BaseActivity extends ActionBarActivity {
-    private Toolbar toolbar;
+public class BaseActivity extends AppCompatActivity {
+    public static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

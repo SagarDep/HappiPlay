@@ -79,17 +79,13 @@ public class NearbyFragment extends Fragment implements CardAdapter.OnRecyclerVi
     //菜单项的初始化
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        if (!MainActivity.isDrawerOpen){
             menu.findItem(R.id.action_camera).setVisible(true);
-        }
         //比如打开菜单时隐藏search按钮
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
-        menu.add(10,10,1,"test");
         getActivity().getMenuInflater().inflate(R.menu.menu_main, menu);
     }
 

@@ -14,11 +14,9 @@ import com.example.mac.myapplication.R;
  */
 public class LikeFragment extends android.support.v4.app.Fragment {
 
-
     public LikeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

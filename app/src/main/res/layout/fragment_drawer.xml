@@ -21,25 +21,25 @@
         <ImageView
             android:id="@+id/menu_album"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_album_selector"/>
+            android:src="@drawable/menu_album"/>
         <ImageView
             android:id="@+id/menu_like"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_like_selector"/>
+            android:src="@drawable/menu_like"/>
         <ImageView
             android:id="@+id/menu_nearby"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_nearby_selector"/>
+            android:src="@drawable/menu_nearby"/>
 
         <ImageView
             android:id="@+id/menu_msg"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_msg_selector"/>
+            android:src="@drawable/menu_msg"/>
 
         <ImageView
             android:id="@+id/menu_setting"
             style="@style/MenuItemStyle"
-            android:src="@drawable/menu_setting_selector"/>
+            android:src="@drawable/menu_setting"/>
     </LinearLayout>
 
 

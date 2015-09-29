@@ -12,7 +12,7 @@ import com.example.mac.myapplication.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BeautyFragment extends Fragment {
+public class BeautyFragment extends android.support.v4.app.Fragment {
 
 
     public BeautyFragment() {
@@ -23,7 +23,6 @@ public class BeautyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_beauty, container, false);
     }
 

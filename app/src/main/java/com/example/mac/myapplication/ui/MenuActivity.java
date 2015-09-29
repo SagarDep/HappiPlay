@@ -8,12 +8,12 @@ import android.support.v4.app.FragmentTransaction;
 import com.example.mac.myapplication.R;
 
 public class MenuActivity extends BaseActivity {
-    private MenuFragment menuFragment;
+    private MenuFrags menuFrags;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        menuFragment = (MenuFragment)getIntent().getExtras().get("extra");
+        menuFrags = (MenuFrags)getIntent().getExtras().get("extra");
         super.onCreate(savedInstanceState);
-        if (menuFragment !=null){
+        if (menuFrags !=null){
             initFragment();
         }
     }
@@ -21,7 +21,7 @@ public class MenuActivity extends BaseActivity {
     private void initFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment fragment= menuFragment.getFragment();
+        Fragment fragment= menuFrags.getFragment();
         transaction.replace(R.id.fragment, fragment);
         transaction.commit();
     }
@@ -29,7 +29,7 @@ public class MenuActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
 //        return menuFragment !=null? menuFragment.getTitleId():0;
-        return   menuFragment.getTitleId();
+        return  menuFrags.getTitleId();
     }
 
     @Override

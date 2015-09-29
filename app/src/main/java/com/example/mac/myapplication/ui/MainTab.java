@@ -8,10 +8,10 @@ public enum MainTab {
             HomeFragment.class),
 
     BEAUTY(1, R.string.beauty, R.drawable.indicator_square,
-            NearbyFragment.class),
+            BeautyFragment.class),
 
     ACTIVITY(2, R.string.activity, R.drawable.indicator_msg,
-            MessageFragment.class);
+            GiftFragment.class);
 
     private int index;
     private int resName;

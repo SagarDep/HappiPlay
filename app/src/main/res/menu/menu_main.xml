@@ -12,4 +12,10 @@
           app:showAsAction="always"
           android:title="拍一张照片"
         />
+    <item android:id="@+id/action_edit_user"
+          android:icon="@drawable/camera"
+          android:visible="false"
+          app:showAsAction="always"
+          android:title="编辑资料"
+        />
 </menu>
