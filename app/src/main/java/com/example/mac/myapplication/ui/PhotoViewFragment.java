@@ -2,6 +2,7 @@ package com.example.mac.myapplication.ui;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuCompat;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -31,7 +33,8 @@ public class PhotoViewFragment extends Fragment {
     private ViewPager mViewPager;
     public List<Integer> imgIds;
     private Context mContext;
-    private ActionBar bar;
+    private static ActionBar bar;
+    private android.support.v7.widget.Toolbar toolbar;
 
     public PhotoViewFragment() {
         // Required empty public constructor
@@ -41,9 +44,9 @@ public class PhotoViewFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         bar=((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (bar!=null)
-            bar.hide();
-
+        if (bar!=null){
+//            bar.hide();
+        }
     }
 
     @Override
@@ -55,6 +58,11 @@ public class PhotoViewFragment extends Fragment {
     }
 
     private void initViewPager(View view) {
+//        toolbar = (Toolbar) view.findViewById(R.id.tool_bar);
+//        AppCompatActivity activity = (AppCompatActivity)getActivity();
+//        activity.setSupportActionBar(toolbar);
+//        toolbar.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+
         mContext = getActivity();
         Bundle userBundle =getArguments();
         imgIds=userBundle.getIntegerArrayList("data");
@@ -105,9 +113,4 @@ static class PhotoModePagerAdapter extends PagerAdapter{
     }
 }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        bar.show();
-    }
 }

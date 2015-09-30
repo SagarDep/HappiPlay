@@ -3,12 +3,16 @@ package com.example.mac.myapplication.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,9 +34,20 @@ public class UserFragment extends android.support.v4.app.Fragment {
 
     private ArrayList<Integer> imgIds;
     private ViewPager pager;
+    private android.support.v7.widget.Toolbar toolbar;
+
 
     public UserFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar bar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (bar != null) {
+            bar.show();
+        }
     }
 
     @Override
@@ -45,6 +60,9 @@ public class UserFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         mContext = getActivity();
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        toolbar = (Toolbar) view.findViewById(R.id.tb_custom);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
 
         setHasOptionsMenu(true);
         initUserAlbum(view);
@@ -121,13 +139,13 @@ public class UserFragment extends android.support.v4.app.Fragment {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     android.support.v4.app.Fragment fragment = new PhotoViewFragment();
-                    Bundle bundle=new Bundle();
-                    bundle.putInt("position",position);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", position);
                     bundle.putIntegerArrayList("data", imgIds);
                     fragment.setArguments(bundle);
 //                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
                     transaction.setCustomAnimations(
-                            0,R.anim.abc_fade_out,0,R.anim.abc_fade_out);
+                            0, R.anim.abc_fade_out, 0, R.anim.abc_fade_out);
                     transaction.replace(R.id.fragment, fragment);
                     transaction.addToBackStack("photo mode");
                     transaction.commit();
@@ -139,7 +157,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View)object);
+            container.removeView((View) object);
         }
 
         @Override

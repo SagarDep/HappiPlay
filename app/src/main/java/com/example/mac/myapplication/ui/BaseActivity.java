@@ -27,20 +27,23 @@ public class BaseActivity extends AppCompatActivity {
 
     private void initToolbar() {
         toolbar= (Toolbar) findViewById(R.id.tb_custom);
-        if (getTitleId()!=0){
-            toolbar.setTitle(getTitleId());
-        }
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);//显示home图标
-            getSupportActionBar().setHomeButtonEnabled(true);//home可点击
-        }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
+        if (toolbar!=null){
+            if (getTitleId()!=0){
+
+                toolbar.setTitle(getTitleId());
             }
-        });
+            setSupportActionBar(toolbar);
+            if (getSupportActionBar()!=null){
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);//显示home图标
+                getSupportActionBar().setHomeButtonEnabled(true);//home可点击
+            }
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
     }
 
 }

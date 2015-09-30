@@ -6,6 +6,7 @@
                                    android:layout_width="match_parent"
                                    android:layout_height="wrap_content"
                                    android:background="@color/app_style"
+                                   android:minHeight="?attr/actionBarSize"
                                    android:fitsSystemWindows="true"
                                    android:popupTheme="@style/AppTheme"
                                    app:theme="@style/ToolBarStyle">

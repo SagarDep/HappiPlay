@@ -1,14 +1,17 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
         <item name="android:statusBarColor">@color/app_style</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:actionBarStyle">@style/ToolBarStyle</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
-    <style name="ToolBarStyle" parent="Theme.AppCompat">
+    <style name="ToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!--Toolbar背景色-->
-        <item name="colorPrimary">@color/app_style</item>
+        <item name="colorPrimary">@android:color/transparent</item>
         <!--title顏色-->
         <item name="android:textColorPrimary">@android:color/white</item>
         <!--主界面arrow顏色-->
