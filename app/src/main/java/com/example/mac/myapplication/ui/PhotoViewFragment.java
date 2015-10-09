@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -37,6 +38,7 @@ public class PhotoViewFragment extends Fragment {
     private Context mContext;
     private static ActionBar bar;
     private static android.support.v7.widget.Toolbar toolbar;
+    private static LinearLayout photoViewBottom;
 
     public PhotoViewFragment() {
         // Required empty public constructor
@@ -60,6 +62,8 @@ public class PhotoViewFragment extends Fragment {
     private void initToolbar() {
         toolbar = BaseActivity.getToolbar();
         toolbar.setBackgroundColor(Color.TRANSPARENT);
+//        toolbar.setVisibility(toolbar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+
     }
 
     private void initViewPager(View view) {
@@ -75,6 +79,8 @@ public class PhotoViewFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.photo_mode_viewpager);
         mViewPager.setAdapter(new PhotoModePagerAdapter(imgIds, mContext));
         mViewPager.setCurrentItem(currentPosition);
+
+        photoViewBottom= (LinearLayout) view.findViewById(R.id.photo_mode_bottom);
     }
 
     static class PhotoModePagerAdapter extends PagerAdapter {
@@ -110,7 +116,8 @@ public class PhotoViewFragment extends Fragment {
             photo.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                 @Override
                 public void onPhotoTap(View view, float x, float y) {
-                    toolbar.setVisibility(toolbar.getVisibility()==View.VISIBLE?View.INVISIBLE:View.VISIBLE);
+                    toolbar.setVisibility(toolbar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+                    photoViewBottom.setVisibility(photoViewBottom.getVisibility()==View.VISIBLE?View.INVISIBLE:View.VISIBLE);
                 }
             });
 

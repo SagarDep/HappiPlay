@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mac.myapplication.R;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.nearby_card, parent, false);
         CardViewHolder holder = new CardViewHolder(view);
-        holder.setIsRecyclable(true);
+//        holder.setIsRecyclable(true);
         return holder;
     }
 
@@ -49,8 +50,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
         int resId = mContext.getResources().getIdentifier("img_" + position, "drawable", mContext.getPackageName());
         if (resId != 0) {
-            holder.card_img.setImageResource(resId);
-            holder.user_head.setImageResource(resId);
+//            holder.card_img.setImageResource(resId);
+//            holder.user_head.setImageResource(resId);
+            Glide.with(mContext).load(resId).into(holder.card_img);
+            Glide.with(mContext).load(resId).into(holder.user_head);
+        }else {
+            return;
         }
 
         if (listener != null) {
@@ -72,6 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
     @Override
     public int getItemCount() {
+        //实际上这里的size就已经确定了item的数量。如果图片不够，好像会自动填充之前的图片
         return mData.size();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mac.myapplication.ui;
 
+import android.app.Application;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -21,16 +22,17 @@ public class BaseActivity extends AppCompatActivity {
             setContentView(getLayoutId());
         initToolbar();
     }
+
+
     protected int getLayoutId() {
         return 0;
     }
     protected int getTitleId(){ return 0;}
 
-    private void initToolbar() {
+    private  void initToolbar() {
         toolbar= (Toolbar) findViewById(R.id.tb_custom);
         if (toolbar!=null){
             if (getTitleId()!=0){
-
                 toolbar.setTitle(getTitleId());
             }
             setSupportActionBar(toolbar);

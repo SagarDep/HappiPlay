@@ -7,8 +7,5 @@
     android:layout_height="match_parent"
     tools:context="com.example.mac.myapplication.ui.UserEditActivity">
 
-    <include layout="@layout/custom_toolbar"/>
-
-
 
 </LinearLayout>

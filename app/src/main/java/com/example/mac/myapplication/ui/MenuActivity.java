@@ -9,20 +9,24 @@ import com.example.mac.myapplication.R;
 
 public class MenuActivity extends BaseActivity {
     private MenuFrags menuFrags;
+    private Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        menuFrags = (MenuFrags)getIntent().getExtras().get("extra");
-        super.onCreate(savedInstanceState);
-        if (menuFrags !=null){
-            initFragment();
+        menuFrags = (MenuFrags) getIntent().getExtras().get("extra");
+        if (menuFrags != null) {
+            fragment = menuFrags.getFragment();
         }
+        super.onCreate(savedInstanceState);
+
+
+        initFragment();
 
     }
 
     private void initFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment fragment= menuFrags.getFragment();
         transaction.replace(R.id.fragment, fragment);
         transaction.commit();
     }
@@ -30,12 +34,17 @@ public class MenuActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
 //        return menuFragment !=null? menuFragment.getTitleId():0;
-        return  menuFrags.getTitleId();
+        return menuFrags.getTitleId();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_menu;
+        int layoutId = R.layout.activity_menu;
+//如果是userFragment就用可以透明化toolbar的布局
+        if (fragment instanceof UserFragment) {
+            layoutId = R.layout.activity_menu_user;
+        }
+        return layoutId;
     }
 
 }

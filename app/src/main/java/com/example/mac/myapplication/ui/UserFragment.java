@@ -19,9 +19,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mac.myapplication.R;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
     private ArrayList<Integer> imgIds;
     private ViewPager pager;
     private android.support.v7.widget.Toolbar toolbar;
+    private FrameLayout frameLayout;
 
 
     public UserFragment() {
@@ -57,26 +60,32 @@ public class UserFragment extends android.support.v4.app.Fragment {
         mContext = getActivity();
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         initToolbar();
-        setHasOptionsMenu(true);
         initUserAlbum(view);
 
         return view;
     }
 
     private void initToolbar() {
+        setHasOptionsMenu(true);
         toolbar = BaseActivity.getToolbar();
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.setTitle("我");
         toolbar.setBackgroundResource(R.color.app_style);
+
     }
 
     private void initUserAlbum(final View v) {
         pager = (ViewPager) v.findViewById(R.id.user_viewpager);
+        frameLayout = (FrameLayout) v.findViewById(R.id.content_frame);
+
 
         imgIds = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             int resId = mContext.getResources().getIdentifier("img_" + i, "drawable", mContext.getPackageName());
             if (resId != 0) {
                 ImageView img = new ImageView(mContext);
-                img.setImageResource(resId);
+//                img.setImageResource(resId);
+                Glide.with(mContext).load(resId).into(img);
                 img.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imgIds.add(resId);
             } else {
@@ -118,9 +127,16 @@ public class UserFragment extends android.support.v4.app.Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit_user:
-                Intent intent = new Intent(mContext, UserEditActivity.class);
-                int requestCode = 1;
-                startActivityForResult(intent, requestCode);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                android.support.v4.app.Fragment fragment = new UserEditFragment();
+                transaction.setCustomAnimations(
+                        R.anim.abc_slide_in_bottom, R.anim.abc_fade_out,
+                        R.anim.abc_fade_in, R.anim.abc_slide_out_bottom);
+                transaction.replace(R.id.fragment, fragment);
+                transaction.addToBackStack("user edit");
+                transaction.commit();
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -130,7 +146,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             ImageView img = new ImageView(mContext);
-            img.setImageResource(imgIds.get(position));
+            Glide.with(mContext).load(imgIds.get(position)).into(img);
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -141,12 +157,15 @@ public class UserFragment extends android.support.v4.app.Fragment {
                     bundle.putInt("position", position);
                     bundle.putIntegerArrayList("data", imgIds);
                     fragment.setArguments(bundle);
-//                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+//                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     transaction.setCustomAnimations(
-                            0, R.anim.abc_fade_out, 0, R.anim.abc_fade_out);
+                            R.anim.abc_fade_in, R.anim.abc_fade_out,
+                            R.anim.abc_fade_in, R.anim.abc_fade_out);
                     transaction.replace(R.id.fragment, fragment);
                     transaction.addToBackStack("photo mode");
                     transaction.commit();
+                    //进入PhotoMode时，上方会有白色闪一下，未找到完美解决办法
+                    frameLayout.setBackgroundColor(Color.BLACK);
                 }
             });
             container.addView(img);

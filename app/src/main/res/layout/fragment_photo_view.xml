@@ -9,9 +9,10 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/photo_mode_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
     <LinearLayout
+        android:id="@+id/photo_mode_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -32,12 +33,12 @@
         <Button
             android:layout_width="40dp"
             android:layout_height="38dp"
-            android:text="设为头像"
-            android:textColor="@android:color/white"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:background="@drawable/btn_comment_selector"
-             />
+            android:text="设为头像"
+            android:textColor="@android:color/white"
+            />
 
         <Button
             android:layout_width="40dp"
@@ -45,20 +46,23 @@
             android:layout_marginLeft="48dp"
             android:layout_weight="1"
             android:background="@drawable/btn_comment_selector"
+            android:drawableLeft="@drawable/btn_like_it"
             android:paddingLeft="10dp"
             android:text="2"
-            android:textColor="@android:color/white"
-            android:drawableLeft="@drawable/btn_like_it"/>
+            android:textColor="@android:color/white"/>
 
         <Button
             android:layout_width="40dp"
             android:layout_height="38dp"
-
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn_comment_selector"
-            android:drawableLeft="@drawable/btn_comment"/>
+            android:drawableLeft="@drawable/btn_comment"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="12"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 </FrameLayout>
