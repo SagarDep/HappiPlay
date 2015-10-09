@@ -16,6 +16,7 @@ public class MenuActivity extends BaseActivity {
         if (menuFrags !=null){
             initFragment();
         }
+
     }
 
     private void initFragment() {
@@ -36,4 +37,5 @@ public class MenuActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_menu;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.mac.myapplication.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -46,4 +47,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public static Toolbar getToolbar() {
+        return toolbar;
+    }
 }

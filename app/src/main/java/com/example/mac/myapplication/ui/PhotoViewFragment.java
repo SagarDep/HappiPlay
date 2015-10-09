@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,6 +25,7 @@ import com.example.mac.myapplication.R;
 import java.util.List;
 
 import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +36,7 @@ public class PhotoViewFragment extends Fragment {
     public List<Integer> imgIds;
     private Context mContext;
     private static ActionBar bar;
-    private android.support.v7.widget.Toolbar toolbar;
+    private static android.support.v7.widget.Toolbar toolbar;
 
     public PhotoViewFragment() {
         // Required empty public constructor
@@ -43,18 +45,21 @@ public class PhotoViewFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        bar=((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (bar!=null){
-//            bar.hide();
-        }
+//        bar=((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_photo_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_photo_view, container, false);
+        initToolbar();
         initViewPager(view);
         return view;
+    }
+
+    private void initToolbar() {
+        toolbar = BaseActivity.getToolbar();
+        toolbar.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private void initViewPager(View view) {
@@ -64,53 +69,60 @@ public class PhotoViewFragment extends Fragment {
 //        toolbar.setBackgroundColor(Color.parseColor("#00FFFFFF"));
 
         mContext = getActivity();
-        Bundle userBundle =getArguments();
-        imgIds=userBundle.getIntegerArrayList("data");
-        int currentPosition=userBundle.getInt("position");
+        Bundle userBundle = getArguments();
+        imgIds = userBundle.getIntegerArrayList("data");
+        int currentPosition = userBundle.getInt("position");
         mViewPager = (ViewPager) view.findViewById(R.id.photo_mode_viewpager);
         mViewPager.setAdapter(new PhotoModePagerAdapter(imgIds, mContext));
         mViewPager.setCurrentItem(currentPosition);
     }
-static class PhotoModePagerAdapter extends PagerAdapter{
 
-    private List<Integer> imgIds;
-    private Context mContext;
+    static class PhotoModePagerAdapter extends PagerAdapter {
 
-    public PhotoModePagerAdapter(List<Integer> imgIds, Context mContext) {
-        this.imgIds = imgIds;
-        this.mContext = mContext;
+        private List<Integer> imgIds;
+        private Context mContext;
+
+        public PhotoModePagerAdapter(List<Integer> imgIds, Context mContext) {
+            this.imgIds = imgIds;
+            this.mContext = mContext;
+        }
+
+        @Override
+
+        public int getCount() {
+            return imgIds.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            PhotoView photo = new PhotoView(mContext);
+            photo.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return false;
+                }
+            });
+            photo.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                @Override
+                public void onPhotoTap(View view, float x, float y) {
+                    toolbar.setVisibility(toolbar.getVisibility()==View.VISIBLE?View.INVISIBLE:View.VISIBLE);
+                }
+            });
+
+            Glide.with(mContext).load(imgIds.get(position)).into(photo);
+            container.addView(photo);
+            return photo;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
     }
-
-    @Override
-
-    public int getCount() {
-        return imgIds.size();
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view ==object;
-    }
-
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        PhotoView photoView=new PhotoView(mContext);
-        photoView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return false;
-            }
-        });
-
-        Glide.with(mContext).load(imgIds.get(position)).into(photoView);
-        container.addView(photoView);
-        return photoView;
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View)object);
-    }
-}
 
 }

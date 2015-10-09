@@ -1,8 +1,8 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/background_dark">
 
 
@@ -11,11 +11,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="test"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_comment_selector"
+            android:src="@drawable/btn_delete"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:text="设为头像"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_comment_selector"
+             />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_comment_selector"
+            android:paddingLeft="10dp"
+            android:text="2"
+            android:textColor="@android:color/white"
+            android:drawableLeft="@drawable/btn_like_it"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_comment_selector"
+            android:drawableLeft="@drawable/btn_comment"/>
+
+    </LinearLayout>
 </FrameLayout>
 

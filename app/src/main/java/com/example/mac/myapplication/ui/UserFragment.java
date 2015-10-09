@@ -44,10 +44,6 @@ public class UserFragment extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ActionBar bar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (bar != null) {
-            bar.show();
-        }
     }
 
     @Override
@@ -60,14 +56,16 @@ public class UserFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         mContext = getActivity();
         View view = inflater.inflate(R.layout.fragment_user, container, false);
-        toolbar = (Toolbar) view.findViewById(R.id.tb_custom);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(toolbar);
-
+        initToolbar();
         setHasOptionsMenu(true);
         initUserAlbum(view);
 
         return view;
+    }
+
+    private void initToolbar() {
+        toolbar = BaseActivity.getToolbar();
+        toolbar.setBackgroundResource(R.color.app_style);
     }
 
     private void initUserAlbum(final View v) {

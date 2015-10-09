@@ -5,15 +5,8 @@
         jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/Project/photoview/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="15e2095cc3634e8ffa03e808ed07be9965f79106">
+        sha1="7b1d9c64b007c5eb83cf00a3eefc1169b935ea36">
         <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-2ebeb3f62787ad566ea84619b3e919de81392ed5.jar" />
-    </item>
-    <item
-        jar="/Users/yons/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.1/86b122e640af09b0723e1fa44083c354ba6d9089/glide-3.6.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
-        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/glide-3.6.1-c6cee40b5acb8d34c611114cfc6a9876611478d7.jar" />
     </item>
 
 </items>
