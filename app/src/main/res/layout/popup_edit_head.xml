@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/popup_back"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#b0000000">
+
+
+    <TextView
+        android:id="@+id/edit_choose_photo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_normal"
+        android:drawableLeft="@drawable/user_photo_num"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="从相册中选择"/>
+
+    <TextView
+        android:id="@+id/edit_take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_above="@+id/edit_choose_photo"
+        android:background="@drawable/btn_normal"
+        android:drawableLeft="@drawable/camera"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="拍一张照片"/>
+
+</RelativeLayout>

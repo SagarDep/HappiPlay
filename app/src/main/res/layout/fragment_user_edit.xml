@@ -12,26 +12,31 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"/>
         <TextView
+            android:id="@+id/edit_head"
             style="@style/UserEditTextView"
             android:drawableLeft="@drawable/user_photo_num"
             android:text="修改頭像"/>
 
         <TextView
+            android:id="@+id/edit_nickname"
             style="@style/UserEditTextView"
             android:drawableLeft="@drawable/user_photo_num"
             android:text="用戶暱稱"/>
 
         <TextView
+            android:id="@+id/edit_gender"
             style="@style/UserEditTextView"
             android:drawableLeft="@drawable/user_photo_num"
             android:text="女"/>
 
         <TextView
+            android:id="@+id/edit_birthday"
             style="@style/UserEditTextView"
             android:drawableLeft="@drawable/user_photo_num"
             android:text="1990-10-10"/>
 
         <TextView
+            android:id="@+id/edit_city"
             style="@style/UserEditTextView"
             android:drawableLeft="@drawable/user_photo_num"
             android:text="上海 浦東新區"/>
@@ -39,11 +44,12 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/edit_save"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_gravity="bottom|center"
         android:text="完成"
-        android:background="@drawable/ripple_bg"
+        android:background="@drawable/btn_ripple"
         android:textSize="18sp"
         android:layout_marginBottom="5dp" />
 
