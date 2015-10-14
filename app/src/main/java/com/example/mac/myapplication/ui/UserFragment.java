@@ -131,10 +131,10 @@ public class UserFragment extends android.support.v4.app.Fragment {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 android.support.v4.app.Fragment fragment = new UserEditFragment();
                 transaction.setCustomAnimations(
-                        R.anim.abc_slide_in_bottom, R.anim.abc_fade_out,
-                        R.anim.abc_fade_in, R.anim.abc_slide_out_bottom);
-                transaction.replace(R.id.fragment, fragment);
-                transaction.addToBackStack("user edit");
+                        R.anim.abc_grow_fade_in_from_bottom, R.anim.abc_fade_out,
+                        R.anim.abc_fade_in, R.anim.abc_shrink_fade_out_from_bottom);
+                transaction.replace(R.id.fragment, fragment,"user_edit_fragment");
+                transaction.addToBackStack("user_fragment");
                 transaction.commit();
 
         }

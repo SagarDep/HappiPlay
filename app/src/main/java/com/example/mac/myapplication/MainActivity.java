@@ -8,13 +8,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
@@ -38,6 +43,10 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
     private MainTab[] tabs;
     public static boolean isDrawerOpen;
 
+    public DrawerLayout getDrawerLayout() {
+        return mDrawerLayout;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,24 +67,31 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         transaction.replace(R.id.content_frame, homeFragment);
         transaction.commit();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-
+        mDrawerLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+            }
+        }, 400);
+    }
     private void initDrawerNBar() {
-        //初始化drawer
 
+        //初始化drawer
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                toolbar.setTitle("Home");
                 invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                toolbar.setTitle(R.string.app_name);
                 invalidateOptionsMenu();
             }
         };

@@ -1,13 +1,19 @@
 package com.example.mac.myapplication.ui;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mac.myapplication.MainActivity;
 import com.example.mac.myapplication.R;
 
 
@@ -54,8 +60,8 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Intent intent;
-        intent = new Intent(getActivity(), MenuActivity.class);
+
+        final Intent intent = new Intent(getActivity(), MenuActivity.class);
         switch (view.getId()) {
             case R.id.menu_user:
                 intent.putExtra("extra", MenuFrags.USER);
@@ -76,7 +82,14 @@ public class DrawerFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("extra", MenuFrags.MSG);
                 break;
         }
-        startActivity(intent);
-
+//        DrawerLayout drawer=((MainActivity)getActivity()).getDrawerLayout();
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+                startActivity(intent);
+//            }
+//        }, 200);
+//        drawer.closeDrawer(GravityCompat.START);
     }
 }

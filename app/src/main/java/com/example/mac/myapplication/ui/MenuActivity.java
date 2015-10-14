@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.example.mac.myapplication.R;
 
-public class MenuActivity extends BaseActivity {
+public class MenuActivity extends BaseActivity implements EditNameFragment.UpdateTextListener {
     private MenuFrags menuFrags;
     private Fragment fragment;
 
@@ -47,4 +48,12 @@ public class MenuActivity extends BaseActivity {
         return layoutId;
     }
 
+    @Override
+    public void sendText(String text) {
+        UserEditFragment fragment = (UserEditFragment) getSupportFragmentManager().findFragmentByTag("user_edit_fragment");
+        if (fragment!=null){
+            fragment.sendText(text);
+        }
+
+    }
 }

@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/yons/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/Project/CityChoose/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/butterknife-7.0.1-99cbb7af5070a4e5a1d11a307a693eff94134409.jar" />
+        sha1="4bbd59fb33e88fe4d0110d7ada1c3d18c4af0674">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-9aa1bb94ede711f79853b105d23a3d1a8fe260cd.jar" />
     </item>
 
 </items>

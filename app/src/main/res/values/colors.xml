@@ -9,4 +9,5 @@
     <color name="round_icon_back">#152942</color>
     <color name="round_icon_back_pressed">#081832</color>
     <color name="sex_male">#6bb0fe</color>
+    <color name="half_transparent">#88ffffff</color>
 </resources>
