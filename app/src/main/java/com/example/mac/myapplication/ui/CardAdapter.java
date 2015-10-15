@@ -2,6 +2,7 @@ package com.example.mac.myapplication.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mac.myapplication.R;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<String> mData;
-    private OnRecyclerViewClickListener listener;
+    private OnRecyclerViewClickListener recyclerViewClick;
 
     public interface OnRecyclerViewClickListener {
         void onItemClick(View view, int position);
@@ -29,18 +31,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
         void onItemLongClick(View view, int position);
     }
 
-    public CardAdapter(Context mContext, List<String> mData, OnRecyclerViewClickListener listener) {
+    public CardAdapter(Context mContext, List<String> mData, OnRecyclerViewClickListener onRecyclerViewClickListener) {
         this.mContext = mContext;
         this.mInflater = LayoutInflater.from(mContext);
         this.mData = mData;
-        this.listener = listener;
+        this.recyclerViewClick = onRecyclerViewClickListener;
     }
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.nearby_card, parent, false);
         CardViewHolder holder = new CardViewHolder(view);
-//        holder.setIsRecyclable(true);
+        holder.setIsRecyclable(true);
         return holder;
     }
 
@@ -50,25 +52,25 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
         int resId = mContext.getResources().getIdentifier("img_" + position, "drawable", mContext.getPackageName());
         if (resId != 0) {
-//            holder.user_head.setImageResource(resId);
-            holder.card_img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            Glide.with(mContext).load(resId).fitCenter().into(holder.card_img);
+            holder.card_img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+//            mContext.getResources().getDimensionPixelSize;
+            Glide.with(mContext).load(resId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.card_img);
             Glide.with(mContext).load(resId).into(holder.user_head);
         }else {
-            return;
+//            return;
         }
 
-        if (listener != null) {
+        if (recyclerViewClick != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(v, position);
+                    recyclerViewClick.onItemClick(v, position);
                 }
             });
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    listener.onItemLongClick(v, position);
+                    recyclerViewClick.onItemLongClick(v, position);
                     return true;
                 }
             });

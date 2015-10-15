@@ -36,20 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" >
-            <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" />
-            </intent-filter>
-        </service>
-
-        <!-- meta-data需要写在application中 -->
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="vc8gixf5F6k7789nX9nscmiG" />
     </application>
 
 </manifest>

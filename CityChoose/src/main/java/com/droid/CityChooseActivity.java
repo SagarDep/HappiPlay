@@ -14,6 +14,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PixelFormat;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -39,9 +43,9 @@ import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.droid.MyLetterListView.OnTouchingLetterChangedListener;
+
+import org.json.JSONObject;
 
 public class CityChooseActivity extends Activity implements OnScrollListener {
     public static final int LOCATE_SUCCESS = 2;
@@ -65,14 +69,17 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
     private EditText sh;
     private TextView tv_noresult;
 
-    private LocationClient mLocationClient;
-    private MyLocationListener mMyLocationListener;
 
-    private String currentCity; // 用于保存定位到的城市
-    private int locateProcess = 1; // 记录当前定位的状态 正在定位-定位成功-定位失败
+    private String currentCity;
+    private int locateState = LOCATING;
     private boolean isNeedFresh;
 
     private DatabaseHelper helper;
+    private double lat;
+    private double lon;
+    private TextView locateHint;
+    private TextView city;
+    private ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,7 +99,7 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
-                if (s.toString() == null || "".equals(s.toString())) {
+                if ("".equals(s.toString())) {
                     letterListView.setVisibility(View.VISIBLE);
                     personList.setVisibility(View.VISIBLE);
                     resultList.setVisibility(View.GONE);
@@ -136,14 +143,13 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position >= 4) {
-//// TODO: 15/10/14
-                    currentCity=allCity_lists.get(position).getName();
+                    currentCity = allCity_lists.get(position).getName();
                     CityChooseFinish();
 
                 }
             }
         });
-        locateProcess = 1;
+        locateState = LOCATING;
         personList.setAdapter(adapter);
         personList.setOnScrollListener(this);
         resultListAdapter = new ResultListAdapter(this, city_result);
@@ -153,10 +159,8 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-            currentCity = city_result.get(position).getName();
-                // TODO: 15/10/14
+                currentCity = city_result.get(position).getName();
                 CityChooseFinish();
-
             }
         });
         initOverlay();
@@ -165,16 +169,50 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
         hisCityInit();
         setAdapter(allCity_lists, city_hot, city_history);
 //定位
-        mLocationClient = new LocationClient(this.getApplicationContext());
-        mMyLocationListener = new MyLocationListener();
-        mLocationClient.registerLocationListener(mMyLocationListener);
         InitLocation();
-        mLocationClient.start();
+    }
+
+    private Location getMyLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
+
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+
+        List<String> providers = locationManager.getProviders(true);
+
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        for (int i = 0; i < providers.size(); i++) {
+            location = locationManager.getLastKnownLocation(providers.get(i));
+            if (location != null)
+                break;
+        }
+
+        return location;
     }
 
     private void CityChooseFinish() {
-        Intent city=new Intent();
-        city.putExtra("city",currentCity);
+        Intent city = new Intent();
+        city.putExtra("city", currentCity);
         setResult(RESULT_OK, city);
         finish();
     }
@@ -192,34 +230,56 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
     }
 
     private void InitLocation() {
-        // 设置定位参数
-        LocationClientOption option = new LocationClientOption();
-        option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(10000); // 10分钟扫描1次
-        // 需要地址信息，设置为其他任何值（string类型，且不能为null）时，都表示无地址信息。
-        option.setAddrType("all");
-        // 设置是否返回POI的电话和地址等详细信息。默认值为false，即不返回POI的电话和地址信息。
-        option.setPoiExtraInfo(true);
-        // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
-        option.setProdName("通过GPS定位我当前的位置");
-        // 禁用启用缓存定位数据
-        option.disableCache(true);
-        // 设置最多可返回的POI个数，默认值为3。由于POI查询比较耗费流量，设置最多返回的POI个数，以便节省流量。
-        option.setPoiNumber(3);
-        // 设置定位方式的优先级。
-        // 当gps可用，而且获取了定位结果时，不再发起网络请求，直接返回给用户坐标。这个选项适合希望得到准确坐标位置的用户。如果gps不可用，再发起网络请求，进行定位。
-        option.setPriority(LocationClientOption.GpsFirst);
-        mLocationClient.setLocOption(option);
+        Location location = getMyLocation();
+        lat = location.getLatitude();
+        lon = location.getLongitude();
+        new MyTask().execute();
+    }
+
+    class MyTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ReverseGeoCoding reverseGeoCoding = new ReverseGeoCoding(lon, lat);
+            if (reverseGeoCoding.getAddress()!=null){
+                currentCity =reverseGeoCoding.getAddress();
+                locateState=LOCATE_SUCCESS;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            initLocateProgress();
+        }
+    }
+
+    private void initLocateProgress() {
+        if (locateState == LOCATING) {
+            locateHint.setText("正在定位");
+            city.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        } else if (locateState == LOCATE_SUCCESS) {
+            locateHint.setText("当前定位城市");
+            city.setVisibility(View.VISIBLE);
+            city.setText(currentCity);
+            progressBar.setVisibility(View.GONE);
+        } else if (locateState == LOCATE_FAILED) {
+            locateHint.setText("未定位到城市,请选择");
+            city.setVisibility(View.VISIBLE);
+            city.setText("重新选择");
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private void cityInit() {
-        City city = new City("定位", "0"); // 当前定位城市
+        City city = new City("定位", "0");
         allCity_lists.add(city);
-        city = new City("最近", "1"); // 最近访问的城市
+        city = new City("最近", "1");
         allCity_lists.add(city);
-        city = new City("热门", "2"); // 热门城市
+        city = new City("热门", "2");
         allCity_lists.add(city);
-        city = new City("全部", "3"); // 全部城市
+        city = new City("全部", "3");
         allCity_lists.add(city);
         city_lists = getCityList();
         allCity_lists.addAll(city_lists);
@@ -333,36 +393,6 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
         personList.setAdapter(adapter);
     }
 
-    /**
-     * 实现实位回调监听
-     */
-    public class MyLocationListener implements BDLocationListener {
-
-        @Override
-        public void onReceiveLocation(BDLocation arg0) {
-            Log.e("info", "city = " + arg0.getCity());
-            if (!isNeedFresh) {
-                return;
-            }
-            isNeedFresh = false;
-            if (arg0.getCity() == null) {
-                locateProcess = 3; // 定位失败
-                personList.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                return;
-            }
-            currentCity = arg0.getCity().substring(0,
-                    arg0.getCity().length() - 1);
-            locateProcess = 2; // 定位成功
-            personList.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-        }
-
-        @Override
-        public void onReceivePoi(BDLocation arg0) {
-
-        }
-    }
 
     private class ResultListAdapter extends BaseAdapter {
         private LayoutInflater inflater;
@@ -469,51 +499,32 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            final TextView city;
+
             int viewType = getItemViewType(position);
             if (viewType == 0) { // 定位
                 convertView = inflater.inflate(R.layout.frist_list_item, null);
-                TextView locateHint = (TextView) convertView
-                        .findViewById(R.id.locateHint);
+                progressBar = (ProgressBar) convertView.findViewById(R.id.pbLocate);
+                locateHint = (TextView) convertView.findViewById(R.id.locateHint);
                 city = (TextView) convertView.findViewById(R.id.lng_city);
                 city.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (locateProcess == LOCATE_SUCCESS) {
-                            Toast.makeText(getApplicationContext(),
-                                    city.getText().toString(),
+                        if (locateState == LOCATE_SUCCESS) {
+                            Toast.makeText(CityChooseActivity.this, city.getText().toString(),
                                     Toast.LENGTH_SHORT).show();
-                        } else if (locateProcess == LOCATE_FAILED) {
-                            //百度定位
-                            locateProcess = LOCATING;
+                            CityChooseFinish();
+                        } else if (locateState == LOCATE_FAILED) {
+                            locateState = LOCATING;
                             personList.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
-                            mLocationClient.stop();
                             isNeedFresh = true;
-                            InitLocation();
                             currentCity = "";
-                            mLocationClient.start();
+                            InitLocation();
                         }
                     }
                 });
-                ProgressBar pbLocate = (ProgressBar) convertView
-                        .findViewById(R.id.pbLocate);
-                if (locateProcess == LOCATING) {
-                    locateHint.setText("正在定位");
-                    city.setVisibility(View.GONE);
-                    pbLocate.setVisibility(View.VISIBLE);
-                } else if (locateProcess == LOCATE_SUCCESS) {
-                    locateHint.setText("当前定位城市");
-                    city.setVisibility(View.VISIBLE);
-                    city.setText(currentCity);
-                    mLocationClient.stop();
-                    pbLocate.setVisibility(View.GONE);
-                } else if (locateProcess == LOCATE_FAILED) {
-                    locateHint.setText("未定位到城市,请选择");
-                    city.setVisibility(View.VISIBLE);
-                    city.setText("重新选择");
-                    pbLocate.setVisibility(View.GONE);
-                }
+                initLocateProgress();
+
             } else if (viewType == 1) { // 最近访问城市
                 convertView = inflater.inflate(R.layout.recent_city, null);
                 GridView rencentCity = (GridView) convertView
@@ -544,7 +555,6 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-// TODO: 15/10/14
                         currentCity = city_hot.get(position).getName();
                         CityChooseFinish();
 
@@ -590,11 +600,6 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
         }
     }
 
-    @Override
-    protected void onStop() {
-        mLocationClient.stop();
-        super.onStop();
-    }
 
     class HotCityAdapter extends BaseAdapter {
         private Context context;
@@ -771,4 +776,5 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
             handler.postDelayed(overlayThread, 1000);
         }
     }
+
 }

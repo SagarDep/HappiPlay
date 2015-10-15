@@ -47,6 +47,10 @@ public final class R {
         public static int total_item=0x7f030006;
     }
     public static final class string {
-        public static int app_name=0x7f040000;
+        public static int address_found=0x7f040000;
+        public static int app_name=0x7f040001;
+        public static int invalid_lat_long_used=0x7f040002;
+        public static int no_address_found=0x7f040003;
+        public static int service_not_available=0x7f040004;
     }
 }

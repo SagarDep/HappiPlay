@@ -28,4 +28,8 @@ int layout main 0x7f030003
 int layout overlay 0x7f030004
 int layout recent_city 0x7f030005
 int layout total_item 0x7f030006
-int string app_name 0x7f040000
+int string address_found 0x7f040000
+int string app_name 0x7f040001
+int string invalid_lat_long_used 0x7f040002
+int string no_address_found 0x7f040003
+int string service_not_available 0x7f040004
