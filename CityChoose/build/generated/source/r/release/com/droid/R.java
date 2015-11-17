@@ -14,11 +14,12 @@ public final class R {
         public static int cityhot_edittext_bg=0x7f020000;
         public static int icon=0x7f020001;
         public static int item_selector=0x7f020002;
-        public static int text_selector=0x7f020003;
-        public static int title_bar_background=0x7f020004;
-        public static int wb_btn_off_normal=0x7f020005;
-        public static int wb_city_search_bg=0x7f020006;
-        public static int wb_search_icon=0x7f020007;
+        public static int overlay_back=0x7f020003;
+        public static int text_selector=0x7f020004;
+        public static int title_bar_background=0x7f020005;
+        public static int wb_btn_off_normal=0x7f020006;
+        public static int wb_city_search_bg=0x7f020007;
+        public static int wb_search_icon=0x7f020008;
     }
     public static final class id {
         public static int MyLetterListView01=0x7f05000c;

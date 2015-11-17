@@ -18,8 +18,6 @@ android {
 }
 
 dependencies {
-    compile files('libs/baidumapapi_v2_1_2.jar')
-    compile files('libs/locSDK_3.1.jar')
     compile files('libs/pinyin4android1.0.jar')
     compile files('libs/pinyin4j-2.5.0.jar')
 }

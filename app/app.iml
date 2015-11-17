@@ -103,8 +103,11 @@
     <orderEntry type="library" exported="" name="design-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.1" level="project" />
+    <orderEntry type="module" module-name="Indicator" exported="" />
     <orderEntry type="module" module-name="photoview" exported="" />
+    <orderEntry type="module" module-name="PagerSlidingTabStrip" exported="" />
     <orderEntry type="module" module-name="CityChoose" exported="" />
+    <orderEntry type="module" module-name="QQSegment" exported="" />
     <orderEntry type="module" module-name="ImageSlider" exported="" />
   </component>
 </module>

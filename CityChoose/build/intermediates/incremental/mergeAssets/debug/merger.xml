@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Volumes/MAC3/HappiPlay/ContactList/app/src/main/assets"><file name="meituan_cities.db" path="/Volumes/MAC3/HappiPlay/ContactList/app/src/main/assets/meituan_cities.db"/></source></dataSet><dataSet config="debug"><source path="/Volumes/MAC3/HappiPlay/ContactList/app/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Volumes/MAC3/HappiPlay/Project/CityChoose/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Volumes/MAC3/HappiPlay/Project/CityChoose/src/debug/assets"/></dataSet></merger>

@@ -91,7 +91,5 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="pinyin4android1.0" level="project" />
     <orderEntry type="library" exported="" name="pinyin4j-2.5.0" level="project" />
-    <orderEntry type="library" exported="" name="locSDK_3.1" level="project" />
-    <orderEntry type="library" exported="" name="baidumapapi_v2_1_2" level="project" />
   </component>
 </module>

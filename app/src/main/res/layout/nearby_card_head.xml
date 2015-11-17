@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:padding="6dp"
+    android:padding="5dp"
     >
 
     <ImageView
@@ -89,7 +89,6 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/photo_num"
         android:layout_toStartOf="@id/photo_num"
-        android:src="@drawable/camera"
-        android:text="13"/>
+        android:src="@drawable/camera" />
 
 </RelativeLayout>

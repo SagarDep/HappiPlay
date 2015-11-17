@@ -8,55 +8,53 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 
 import com.example.mac.myapplication.interf.OnTabReselecctListener;
 import com.example.mac.myapplication.ui.BaseActivity;
 import com.example.mac.myapplication.ui.HomeFragment;
-import com.example.mac.myapplication.ui.MainTab;
+import com.example.mac.myapplication.ui.TabHosts;
+
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements View.OnTouchListener, TabHost.OnTabChangeListener {
 
     private static final String TAG = "test";
+//    @Bind(R.id.tool_bar)
+//    Toolbar toolBar;
+//    @Bind(R.id.drawer)
+//    View drawerView;
+//    @Bind(R.id.drawer_layout)
+//    DrawerLayout mDrawerLayout;
 
-    private Toolbar toolbar;
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private View drawerView;
+
     private FragmentTabHost mTabhost;
-    private MainTab[] tabs;
+    private TabHosts[] tabs;
     public static boolean isDrawerOpen;
+    ActionBarDrawerToggle mDrawerToggle;
 
-    public DrawerLayout getDrawerLayout() {
-        return mDrawerLayout;
-    }
+//    public DrawerLayout getDrawerLayout() {
+//        return mDrawerLayout;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        findViews();
+        ButterKnife.bind(this);
         initViews();
     }
 
     private void initViews() {
-        initDrawerNBar();
+//        initDrawerNBar();
         initTabs();
     }
 
@@ -64,49 +62,51 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Fragment homeFragment = new HomeFragment();
-        transaction.replace(R.id.content_frame, homeFragment);
+        transaction.replace(R.id.content, homeFragment);
         transaction.commit();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-
-        mDrawerLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mDrawerLayout.closeDrawer(GravityCompat.START);
-            }
-        }, 400);
+//        mDrawerLayout.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mDrawerLayout.closeDrawer(GravityCompat.START);
+//            }
+//        }, 400);
     }
-    private void initDrawerNBar() {
 
-        //初始化drawer
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
-                R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                invalidateOptionsMenu();
-            }
-        };
-        mDrawerToggle.syncState();
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-    }
+//
+//    private void initDrawerNBar() {
+//
+//        //初始化drawer
+//        mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolBar,
+//                R.string.drawer_open, R.string.drawer_close) {
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                super.onDrawerOpened(drawerView);
+//                invalidateOptionsMenu();
+//            }
+//
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+//                super.onDrawerClosed(drawerView);
+//                invalidateOptionsMenu();
+//            }
+//        };
+//        mDrawerToggle.syncState();
+//        mDrawerLayout.setDrawerListener(mDrawerToggle);
+//    }
 
     private void initTabs() {
         mTabhost = (FragmentTabHost) findViewById(R.id.tab_host);
-        mTabhost.setup(this, getSupportFragmentManager(), R.id.content_frame);
+        mTabhost.setup(this, getSupportFragmentManager(), R.id.content);
 
-        tabs = MainTab.values();
+        tabs = TabHosts.values();
         final int size = tabs.length;
         for (int i = 0; i < size; i++) {
-            MainTab tab = tabs[i];
+            TabHosts tab = tabs[i];
             TabSpec tabSpec = mTabhost.newTabSpec(getString(tab.getResName()));
             View tabIndicator = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab_indicator, null);
             TextView title = (TextView) tabIndicator.findViewById(R.id.indicator);
@@ -133,18 +133,13 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         mTabhost.setOnTabChangedListener(this);
     }
 
-    private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.tb_custom);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerView = findViewById(R.id.drawer);
-    }
 
     //菜单项的初始化
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         //比如打开菜单时隐藏search按钮
-        isDrawerOpen = mDrawerLayout.isDrawerOpen(drawerView);//drawerView是整個drawer
-        menu.findItem(R.id.action_search).setVisible(!isDrawerOpen);//drawer關閉時則隱藏按鈕
+//        isDrawerOpen = mDrawerLayout.isDrawerOpen(drawerView);//drawerView是整個drawer
+//        menu.findItem(R.id.action_search).setVisible(!isDrawerOpen);//drawer關閉時則隱藏按鈕
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -199,11 +194,11 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
             boolean isCurrentTab = (i == mTabhost.getCurrentTab());
             View view = mTabhost.getTabWidget().getChildAt(i);
             view.setSelected(isCurrentTab);
-            if (isCurrentTab) {
-                toolbar.setTitle(tabs[i].getResName());
-            }
+//            if (isCurrentTab) {
+//                toolBar.setTitle(tabs[i].getResName());
+//            }
         }
-        if (tabId.equals(getString(MainTab.ACTIVITY.getResName()))) {
+        if (tabId.equals(getString(TabHosts.ACTIVITY.getResName()))) {
             //待加badgeView
         }
     }

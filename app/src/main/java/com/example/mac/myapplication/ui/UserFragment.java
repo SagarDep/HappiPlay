@@ -2,7 +2,6 @@ package com.example.mac.myapplication.ui;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,9 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -76,7 +72,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
 
     private void initUserAlbum(final View v) {
         pager = (ViewPager) v.findViewById(R.id.user_viewpager);
-        frameLayout = (FrameLayout) v.findViewById(R.id.content_frame);
+        frameLayout = (FrameLayout) v.findViewById(R.id.content);
 
 
         imgIds = new ArrayList<>();
@@ -133,7 +129,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
                 transaction.setCustomAnimations(
                         R.anim.abc_grow_fade_in_from_bottom, R.anim.abc_fade_out,
                         R.anim.abc_fade_in, R.anim.abc_shrink_fade_out_from_bottom);
-                transaction.replace(R.id.fragment, fragment,"user_edit_fragment");
+                transaction.replace(R.id.content, fragment,"user_edit_fragment");
                 transaction.addToBackStack("user_fragment");
                 transaction.commit();
 
@@ -161,7 +157,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
                     transaction.setCustomAnimations(
                             R.anim.abc_fade_in, R.anim.abc_fade_out,
                             R.anim.abc_fade_in, R.anim.abc_fade_out);
-                    transaction.replace(R.id.fragment, fragment);
+                    transaction.replace(R.id.content, fragment);
                     transaction.addToBackStack("photo mode");
                     transaction.commit();
                     //进入PhotoMode时，上方会有白色闪一下，未找到完美解决办法

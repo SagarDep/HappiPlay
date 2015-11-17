@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/Project/CityChoose/unspecified/jars/classes.jar"
+        jar="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/exploded-aar/Project/PagerSlidingTabStrip/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="1d5e3ad7174f0a359dedb2c9dfda711197ea4c64">
-        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-9aa1bb94ede711f79853b105d23a3d1a8fe260cd.jar" />
+        sha1="ec9a02a79f5b8fb4c1a295770ea64b7359059abf">
+        <dex dex="/Volumes/MAC3/HappiPlay/Project/app/build/intermediates/pre-dexed/debug/classes-e943a70f721c288eb3f19f31c673e5f2c272a736.jar" />
     </item>
 
 </items>

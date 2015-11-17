@@ -58,7 +58,7 @@ public class NearbyFragment extends Fragment implements CardAdapter.OnRecyclerVi
 
         mDataList = new ArrayList<>();
         for (int i = 0; i < 17; i++) {
-            mDataList.add(""+(char)i);
+            mDataList.add(""+i);
         }
         adapter=new CardAdapter(mContext, mDataList, this);
         mRecyclerView.setAdapter(adapter);

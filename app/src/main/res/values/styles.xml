@@ -6,14 +6,19 @@
         <item name="android:statusBarColor">@color/app_style</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:actionBarStyle">@style/ToolBarStyle</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    </style>
+    <style name="StyledIndicators" parent="@android:style/Theme.Light">
+        <item name="vpiCirclePageIndicatorStyle">@style/CustomCirclePageIndicator</item>
+        <item name="vpiLinePageIndicatorStyle">@style/CustomLinePageIndicator</item>
+        <item name="vpiTitlePageIndicatorStyle">@style/CustomTitlePageIndicator</item>
+        <item name="vpiUnderlinePageIndicatorStyle">@style/CustomUnderlinePageIndicator</item>
     </style>
     <style name="ToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!--Toolbar背景色-->
         <item name="colorPrimary">@android:color/transparent</item>
         <!--title顏色-->
-        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/title</item>
         <!--主界面arrow顏色-->
         <item name="android:textColorSecondary">@android:color/white</item>
         <item name="actionMenuTextColor">@android:color/holo_green_light</item>
@@ -52,7 +57,7 @@
     <style name="UserEditTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
-        <item name="android:background">@drawable/btn_ripple</item>
+        <item name="android:background">@drawable/btn_normal_selector</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">10dp</item>
@@ -60,5 +65,42 @@
     <style name="PopupAnimation" parent="android:Animation" mce_bogus="1">
         <item name="android:windowEnterAnimation">@anim/abc_fade_in</item>
         <item name="android:windowExitAnimation">@anim/abc_fade_out</item>
+    </style>
+    <style name="CustomTitlePageIndicator">
+        <item name="android:background">#18FF0000</item>
+        <item name="footerColor">#FFAA2222</item>
+        <item name="footerLineHeight">1dp</item>
+        <item name="footerIndicatorHeight">3dp</item>
+        <item name="footerIndicatorStyle">underline</item>
+        <item name="android:textColor">#AA000000</item>
+        <item name="selectedColor">#FF000000</item>
+        <item name="selectedBold">true</item>
+    </style>
+
+    <style name="CustomLinePageIndicator">
+        <item name="strokeWidth">4dp</item>
+        <item name="lineWidth">30dp</item>
+        <item name="unselectedColor">#FF888888</item>
+        <item name="selectedColor">#FF880000</item>
+    </style>
+
+    <style name="CustomCirclePageIndicator">
+        <item name="fillColor">#FF888888</item>
+        <item name="strokeColor">#FF000000</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="radius">10dp</item>
+        <item name="centered">true</item>
+    </style>
+
+
+    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="CustomUnderlinePageIndicator">
+        <item name="selectedColor">#FFCC0000</item>
+        <item name="android:background">#FFCCCCCC</item>
+        <item name="fadeLength">1000</item>
+        <item name="fadeDelay">1000</item>
     </style>
 </resources>

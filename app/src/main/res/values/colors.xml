@@ -3,11 +3,18 @@
     <color name="Indigo_colorPrimaryDark">#303f9f</color>
     <color name="Indigo_colorPrimary">#3f51b5</color>
     <color name="Indigo_nav_color">#4675FF</color>
-    <color name="app_style">#081832</color>
+    <color name="app_style">#f8f8f8</color>
     <color name="menu_color">#0b1222</color>
-    <color name="indicator_color">#5391da</color>
+    <color name="indicator_color">#1e1e1e</color>
     <color name="round_icon_back">#152942</color>
     <color name="round_icon_back_pressed">#081832</color>
     <color name="sex_male">#6bb0fe</color>
     <color name="half_transparent">#88ffffff</color>
+    <color name="title">#1a5f98</color>
+    <color name="line">#e5e6e8</color>
+    <color name="money_text">#1662c3</color>
+    <color name="dark_text">#1a5f98</color>
+    <color name="light_text">#3689d9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="app_back">#eef2f5</color>
 </resources>

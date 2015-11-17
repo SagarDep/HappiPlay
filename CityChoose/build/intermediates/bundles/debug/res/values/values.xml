@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Volumes/MAC3/HappiPlay/Project/CityChoose/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="address_found">address_found</string>
+    <string name="app_name">CityChoose</string>
+    <string name="invalid_lat_long_used">invalid_lat_long_used</string>
+    <string name="no_address_found">no_address_found</string>
+    <string name="service_not_available">service_not_available</string>
+</resources>

@@ -12,8 +12,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/CityChoose" />
             <option value="$PROJECT_DIR$/ImageSlider" />
+            <option value="$PROJECT_DIR$/Indicator" />
+            <option value="$PROJECT_DIR$/PagerSlidingTabStrip" />
+            <option value="$PROJECT_DIR$/QQSegment" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/photoview" />
+            <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>
       </GradleProjectSettings>

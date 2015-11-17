@@ -41,8 +41,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.droid.MyLetterListView.OnTouchingLetterChangedListener;
 
 import org.json.JSONObject;
@@ -211,6 +209,7 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
     }
 
     private void CityChooseFinish() {
+        InsertCity(currentCity);
         Intent city = new Intent();
         city.putExtra("city", currentCity);
         setResult(RESULT_OK, city);
@@ -231,9 +230,12 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
 
     private void InitLocation() {
         Location location = getMyLocation();
-        lat = location.getLatitude();
-        lon = location.getLongitude();
-        new MyTask().execute();
+        if (location != null) {
+            lat = location.getLatitude();
+            lon = location.getLongitude();
+            new MyTask().execute();
+        }
+
     }
 
     class MyTask extends AsyncTask<Void, Void, Void> {
@@ -241,9 +243,9 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
         @Override
         protected Void doInBackground(Void... params) {
             ReverseGeoCoding reverseGeoCoding = new ReverseGeoCoding(lon, lat);
-            if (reverseGeoCoding.getAddress()!=null){
-                currentCity =reverseGeoCoding.getAddress();
-                locateState=LOCATE_SUCCESS;
+            if (reverseGeoCoding.getAddress() != null) {
+                currentCity = reverseGeoCoding.getAddress();
+                locateState = LOCATE_SUCCESS;
             }
             return null;
         }
@@ -529,23 +531,20 @@ public class CityChooseActivity extends Activity implements OnScrollListener {
                 convertView = inflater.inflate(R.layout.recent_city, null);
                 GridView rencentCity = (GridView) convertView
                         .findViewById(R.id.recent_city);
-                rencentCity
-                        .setAdapter(new HitCityAdapter(context, this.hisCity));
+                rencentCity.setAdapter(new HitCityAdapter(context, this.hisCity));
                 rencentCity.setOnItemClickListener(new OnItemClickListener() {
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-
-                        Toast.makeText(getApplicationContext(),
-                                city_history.get(position), Toast.LENGTH_SHORT)
-                                .show();
-
+                        currentCity = city_history.get(position);
+                        CityChooseFinish();
                     }
                 });
                 TextView recentHint = (TextView) convertView
                         .findViewById(R.id.recentHint);
                 recentHint.setText("最近访问的城市");
+//                convertView.setVisibility(View.GONE);
             } else if (viewType == 2) {
                 convertView = inflater.inflate(R.layout.recent_city, null);
                 GridView hotCity = (GridView) convertView

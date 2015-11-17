@@ -3,6 +3,7 @@ package com.example.mac.myapplication.ui;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +15,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -44,7 +46,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserEditFragment extends Fragment implements View.OnClickListener,EditNameFragment.UpdateTextListener {
+public class UserEditFragment extends Fragment implements View.OnClickListener, EditNameFragment.UpdateTextListener {
     private static final int REQUEST_PICK_PHOTO = 1;
     private static final int REQUEST_CAPTURE_PHOTO = 2;
     private static final int REQUEST_CUT_PHOTO = 3;
@@ -99,7 +101,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
         editNickname.setOnClickListener(this);
         editSave.setOnClickListener(this);
 
-        if (!TextUtils.isEmpty(nickName)){
+        if (!TextUtils.isEmpty(nickName)) {
             editNickname.setText(nickName);
         }
     }
@@ -124,8 +126,8 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
                 }, calendar.get(Calendar.YEAR), calendar.get(calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;
             case R.id.edit_city:
-                Intent cityChoose=new Intent(mContext, CityChooseActivity.class);
-                startActivityForResult(cityChoose,REQUEST_CITY_CHOOSE);
+                Intent cityChoose = new Intent(mContext, CityChooseActivity.class);
+                startActivityForResult(cityChoose, REQUEST_CITY_CHOOSE);
 
                 break;
             case R.id.edit_gender:
@@ -178,7 +180,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
                 OpenFragment(editNameFragment);
                 break;
             case R.id.edit_save:
-                FragmentManager manager=getActivity().getSupportFragmentManager();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
 //                FragmentTransaction transaction=manager.beginTransaction();
                 manager.popBackStack();
                 break;
@@ -225,7 +227,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
                 }
                 break;
             case REQUEST_CAPTURE_PHOTO:
-                if (filePath != null&&resultCode==BaseActivity.RESULT_OK) {
+                if (filePath != null && resultCode == BaseActivity.RESULT_OK) {
                     File file = new File(filePath);
                     cutPhoto(Uri.fromFile(file));
                 }
@@ -233,7 +235,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
                 break;
             case REQUEST_CUT_PHOTO:
 
-                if (data != null&& resultCode==BaseActivity.RESULT_OK) {
+                if (data != null && resultCode == BaseActivity.RESULT_OK) {
                     uriData = data.getData();
                     uploadPhoto();
                     Drawable photo = null;
@@ -242,14 +244,15 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    Drawable left = mContext.getDrawable(R.drawable.user_photo_num);
+                    Drawable left;
+                    left = ContextCompat.getDrawable(mContext, R.drawable.user_photo_num);
                     editHead.setCompoundDrawablesWithIntrinsicBounds(left, null, photo, null);
 //                    editHead.setCompoundDrawablePadding(5);
                 }
                 break;
             case REQUEST_CITY_CHOOSE:
-                if (data !=null){
-                    String city=data.getStringExtra("city");
+                if (data != null) {
+                    String city = data.getStringExtra("city");
                     editCity.setText(city);
                 }
                 break;
@@ -276,7 +279,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener,E
 
     @Override
     public void sendText(String text) {
-            nickName = text;
-        Log.i("test",text);
+        nickName = text;
+        Log.i("test", text);
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fragment"
-        android:layout_below="@+id/tb_custom"
+        android:layout_below="@+id/tool_bar"
         tools:context="com.example.mac.myapplication.ui.AlbumActivity">
     </FrameLayout>
     <include layout="@layout/custom_toolbar"/>

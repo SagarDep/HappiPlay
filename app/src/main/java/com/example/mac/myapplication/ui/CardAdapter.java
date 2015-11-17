@@ -52,12 +52,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
         int resId = mContext.getResources().getIdentifier("img_" + position, "drawable", mContext.getPackageName());
         if (resId != 0) {
-            holder.card_img.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//            mContext.getResources().getDimensionPixelSize;
-            Glide.with(mContext).load(resId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.card_img);
+//            holder.card_img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            Glide.with(mContext).load(resId).fitCenter().into(holder.card_img);
             Glide.with(mContext).load(resId).into(holder.user_head);
         }else {
-//            return;
+            return;
         }
 
         if (recyclerViewClick != null) {

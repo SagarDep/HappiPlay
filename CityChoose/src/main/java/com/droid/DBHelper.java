@@ -29,16 +29,16 @@ public class DBHelper extends SQLiteOpenHelper {
 	//---- /data/data/package_name/databases/ ---
 
   private static String DB_PATH ="/data"+
-	  Environment.getDataDirectory().getAbsolutePath() +File.separator+
-	  "com.example.mac.myapplication"+File.separator+
-          "databases"+File.separator;
+            Environment.getDataDirectory().getAbsolutePath() +File.separator+
+            "com.example.mac.myapplication"+File.separator+
+            "databases"+File.separator;
 
 	private static String DB_NAME = "meituan_cities.db";
 	private static String ASSETS_NAME = "meituan_cities.db";
 	
 	
 	private SQLiteDatabase myDataBase = null;
-	private final Context myContext;
+	private final Context mContext;
 
 	/**
 	 * ������ݿ��ļ��ϴ�ʹ��FileSplit�ָ�ΪС��1M��С�ļ� �����зָ�Ϊ hello.db.101 hello.db.102
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			int version) {
 		// ����ͨ��super���ø��൱�еĹ��캯��
 		super(context, name, null, version);
-		this.myContext = context;
+		this.mContext = context;
 	}
 
 	public DBHelper(Context context, String name, int version) {
@@ -118,7 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		if (checkDB != null) {
 			checkDB.close();
 		}
-		return checkDB != null ? true : false;
+		return checkDB != null;
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	 * */
 	private void copyDataBase() throws IOException {
 		// Open your local db as the input stream
-		InputStream myInput = myContext.getAssets().open(ASSETS_NAME);
+		InputStream myInput = mContext.getAssets().open(ASSETS_NAME);
 		// Path to the just created empty db
 		String outFileName = DB_PATH + DB_NAME;
 		// Open the empty db as the output stream
@@ -152,7 +152,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		String outFileName = DB_PATH + DB_NAME;
 		OutputStream myOutput = new FileOutputStream(outFileName);
 		for (int i = ASSETS_SUFFIX_BEGIN; i < ASSETS_SUFFIX_END + 1; i++) {
-			myInput = myContext.getAssets().open(ASSETS_NAME + "." + i);
+			myInput = mContext.getAssets().open(ASSETS_NAME + "." + i);
 			byte[] buffer = new byte[1024];
 			int length;
 			while ((length = myInput.read(buffer)) > 0) {

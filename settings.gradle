@@ -1,1 +1,2 @@
-include ':app', ':ImageSlider', 'photoview', 'CityChoose'
+include ':app', ':ImageSlider', 'photoview', 'CityChoose', ':QQSegment', 'PagerSlidingTabStrip', ':sample', ':library'
+include ':Indicator'
