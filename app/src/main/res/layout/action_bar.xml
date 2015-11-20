@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="12dp"
+    tools:showIn="@layout/fragment_me">
+
+    <ImageView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:src="@drawable/message"/>
+
+    <TextView
+        android:id="@+id/bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="UserName"
+        android:textColor="@color/dark_text"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:src="@drawable/setting"/>
+
+</FrameLayout>

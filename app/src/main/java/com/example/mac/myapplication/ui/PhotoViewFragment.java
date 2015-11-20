@@ -54,14 +54,14 @@ public class PhotoViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photo_view, container, false);
-        initToolbar();
+//        initToolbar();
         initViewPager(view);
         return view;
     }
 
     private void initToolbar() {
-        toolbar = BaseActivity.getToolbar();
-        toolbar.setBackgroundColor(Color.TRANSPARENT);
+//        toolbar = BaseActivity.getToolbar();
+//        toolbar.setBackgroundColor(Color.TRANSPARENT);
 //        toolbar.setVisibility(toolbar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
 
     }

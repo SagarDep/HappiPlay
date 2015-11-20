@@ -50,10 +50,9 @@ public class MenuActivity extends BaseActivity implements EditNameFragment.Updat
 
     @Override
     public void sendText(String text) {
-        UserEditFragment fragment = (UserEditFragment) getSupportFragmentManager().findFragmentByTag("user_edit_fragment");
+        UserEditFragment fragment = (UserEditFragment) getSupportFragmentManager().findFragmentByTag("user_edit");
         if (fragment!=null){
             fragment.sendText(text);
         }
-
     }
 }

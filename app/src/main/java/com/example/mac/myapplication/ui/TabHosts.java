@@ -4,16 +4,16 @@ import com.example.mac.myapplication.R;
 
 public enum TabHosts {
 
-    HOME(0, R.string.home, R.drawable.indicator_home,
+    HOME(0, R.string.home, R.drawable.indicator_home_selector,
             MoneyFragment.class),
 
-    BEAUTY(1, R.string.beauty, R.drawable.indicator_square,
+    BEAUTY(1, R.string.beauty, R.drawable.indicator_nearby_selector,
             BeautyFragment.class),
 
-    ACTIVITY(2, R.string.activity, R.drawable.indicator_msg,
+    ACTIVITY(2, R.string.activity, R.drawable.indicator_box_selector,
             GamePlayFragment.class),
 
-    USER(3, R.string.user, R.drawable.tab_game,
+    USER(3, R.string.user, R.drawable.indicator_me_selector,
             MeFragment.class);
 
     private int index;

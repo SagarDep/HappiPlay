@@ -22,7 +22,7 @@
     <string name="title_activity_base">base</string>
     <string name="album">相冊</string>
     <string name="like">喜歡</string>
-    <string name="user">我</string>
+    <string name="user">我的</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="setting">設置</string>
     <string name="title_activity_menu">MenuActivity</string>

@@ -6,16 +6,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.example.mac.myapplication.ui.PagerFragmentAll;
 import com.example.mac.myapplication.ui.PagerFragmentLike;
 import com.viewpagerindicator.IconPageIndicator;
 import com.viewpagerindicator.IconPagerAdapter;
-import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 
@@ -25,10 +22,10 @@ import butterknife.ButterKnife;
 public class Testctivity extends FragmentActivity {
     private static final String[] CONTENT = new String[] { "Calendar", "Camera", "Alarms", "Location" };
     private static final int[] ICONS = new int[] {
-            R.drawable.indicator_home,
-            R.drawable.indicator_square,
-            R.drawable.indicator_square,
-            R.drawable.indicator_msg,
+            R.drawable.indicator_home_selector,
+            R.drawable.indicator_nearby_selector,
+            R.drawable.indicator_nearby_selector,
+            R.drawable.indicator_box_selector,
     };
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -81,7 +78,7 @@ public class Testctivity extends FragmentActivity {
 
         @Override
         public int getIconResId(int index) {
-            return R.drawable.indicator_home;
+            return R.drawable.indicator_home_selector;
         }
 
         @Override

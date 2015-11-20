@@ -1,10 +1,12 @@
 package com.example.mac.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
@@ -19,14 +21,17 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+import com.example.mac.myapplication.helper.FragmentHelper;
 import com.example.mac.myapplication.interf.OnTabReselecctListener;
 import com.example.mac.myapplication.ui.BaseActivity;
+import com.example.mac.myapplication.ui.EditNameFragment;
 import com.example.mac.myapplication.ui.HomeFragment;
 import com.example.mac.myapplication.ui.TabHosts;
+import com.example.mac.myapplication.ui.UserEditFragment;
 
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements View.OnTouchListener, TabHost.OnTabChangeListener {
+public class MainActivity extends BaseActivity implements View.OnTouchListener, TabHost.OnTabChangeListener ,EditNameFragment.UpdateTextListener{
 
     private static final String TAG = "test";
 //    @Bind(R.id.tool_bar)
@@ -37,10 +42,11 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
 //    DrawerLayout mDrawerLayout;
 
 
-    private FragmentTabHost mTabhost;
+    private static FragmentTabHost mTabhost;
     private TabHosts[] tabs;
     public static boolean isDrawerOpen;
     ActionBarDrawerToggle mDrawerToggle;
+    public static Activity context;
 
 //    public DrawerLayout getDrawerLayout() {
 //        return mDrawerLayout;
@@ -55,6 +61,8 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
 
     private void initViews() {
 //        initDrawerNBar();
+        context=this;
+        new FragmentHelper((FragmentActivity) context);
         initTabs();
     }
 
@@ -107,7 +115,9 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         final int size = tabs.length;
         for (int i = 0; i < size; i++) {
             TabHosts tab = tabs[i];
+
             TabSpec tabSpec = mTabhost.newTabSpec(getString(tab.getResName()));
+
             View tabIndicator = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab_indicator, null);
             TextView title = (TextView) tabIndicator.findViewById(R.id.indicator);
             ImageView img = (ImageView) tabIndicator.findViewById(R.id.indicator_icon);
@@ -172,7 +182,7 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN && view.equals(mTabhost.getCurrentTabView())) {
             //use getTabHost().getCurrentView to get a handle to the view which is displayed in the tab
             //and to get this views context
-            Fragment currentFragment = getcurrentFragment();
+            Fragment currentFragment = getCurrentFragment();
             if (currentFragment != null &&
                     currentFragment instanceof OnTabReselecctListener) {
                 OnTabReselecctListener listener = (OnTabReselecctListener) currentFragment;
@@ -183,7 +193,7 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         return consumed;
     }
 
-    private Fragment getcurrentFragment() {
+    private Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentByTag(mTabhost.getCurrentTabTag());
     }
 
@@ -202,9 +212,19 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
             //待加badgeView
         }
     }
+    @Override
+    public void sendText(String text) {
+        UserEditFragment fragment = (UserEditFragment) getSupportFragmentManager().findFragmentByTag("user_edit");
+        if (fragment!=null){
+            fragment.sendText(text);
+        }
+    }
+    public static FragmentTabHost getTabhost(){
+        return mTabhost;
+    }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.main_activity_layout;
     }
 }

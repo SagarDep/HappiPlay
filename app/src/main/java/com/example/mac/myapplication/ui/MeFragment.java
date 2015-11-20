@@ -1,12 +1,13 @@
 package com.example.mac.myapplication.ui;
 
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
+public class MeFragment extends Fragment implements View.OnClickListener {
 
     @Bind(R.id.tab_indicator)
     View tabIndicator;
@@ -32,19 +34,35 @@ public class MeFragment extends android.support.v4.app.Fragment implements View.
     ImageView indicatorAll;
     @Bind(R.id.indicator_like)
     ImageView indicatorLike;
-    private ArrayList<android.support.v4.app.Fragment> views = new ArrayList<>();
+    @Bind(R.id.message)
+    ImageView message;
+    @Bind(R.id.setting)
+    ImageView setting;
+    private ArrayList<Fragment> views = new ArrayList<>();
     private int indicatorWidth;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
+    private View rootView;
+    private Fragment fragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_me, container, false);
-        ButterKnife.bind(this, view);
-        initViewPager();
-        initIndicator(2);
-        return view;
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_me, null);
+            ButterKnife.bind(this, rootView);
+            initViewPager();
+            initIndicator(2);
+            initButton();
+        }
+        FragmentHelper.showTab();
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    private void initButton() {
+        setting.setOnClickListener(this);
+        message.setOnClickListener(this);
     }
 
     private void initIndicator(int indicatorNum) {
@@ -53,7 +71,7 @@ public class MeFragment extends android.support.v4.app.Fragment implements View.
         display.getMetrics(displayMetrics);
         indicatorWidth = displayMetrics.widthPixels / indicatorNum;
 
-        ViewGroup.LayoutParams layoutParams = tabIndicator.getLayoutParams();
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tabIndicator.getLayoutParams();
         layoutParams.width = indicatorWidth;
         tabIndicator.setLayoutParams(layoutParams);
 
@@ -62,13 +80,13 @@ public class MeFragment extends android.support.v4.app.Fragment implements View.
     }
 
     private void initViewPager() {
+        Log.i("test", "initViewpager");
         views.add(new PagerFragmentAll());
         views.add(new PagerFragmentLike());
-        viewPager.setAdapter(new MyAdapter(getActivity().getSupportFragmentManager()));
+        viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tabIndicator.getLayoutParams();
                 layoutParams.leftMargin = (int) ((position + positionOffset) * indicatorWidth);
                 tabIndicator.setLayoutParams(layoutParams);
@@ -76,10 +94,10 @@ public class MeFragment extends android.support.v4.app.Fragment implements View.
 
             @Override
             public void onPageSelected(int position) {
-                if (position==0){
+                if (position == 0) {
                     indicatorAll.setImageResource(R.drawable.all_select);
                     indicatorLike.setImageResource(R.drawable.like_unselect);
-                }else {
+                } else {
                     indicatorAll.setImageResource(R.drawable.all_unselect);
                     indicatorLike.setImageResource(R.drawable.like_select);
                 }
@@ -101,23 +119,29 @@ public class MeFragment extends android.support.v4.app.Fragment implements View.
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.indicator_all:
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.indicator_like:
                 viewPager.setCurrentItem(1);
                 break;
+            case R.id.setting:
+                startSetting();
+
+                break;
+            case R.id.message:
+                break;
         }
     }
 
     class MyAdapter extends FragmentPagerAdapter {
-        public MyAdapter(FragmentManager fm) {
+        public MyAdapter(android.support.v4.app.FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public android.support.v4.app.Fragment getItem(int position) {
+        public Fragment getItem(int position) {
             return views.get(position);
         }
 
@@ -133,4 +157,15 @@ public class MeFragment extends android.support.v4.app.Fragment implements View.
         }
 
     }
+
+    private void startSetting() {
+        if (fragment==null){
+            fragment = new SettingFragment();
+            Log.i("test","new setting>>>");
+        }
+        FragmentHelper.replaceFragment(R.id.content, fragment, "setting");
+        FragmentHelper.hideTab();
+    }
+
+
 }

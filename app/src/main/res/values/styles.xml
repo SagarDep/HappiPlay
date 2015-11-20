@@ -57,6 +57,7 @@
     <style name="UserEditTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:background">@drawable/btn_normal_selector</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:gravity">center_vertical</item>
@@ -102,5 +103,14 @@
         <item name="android:background">#FFCCCCCC</item>
         <item name="fadeLength">1000</item>
         <item name="fadeDelay">1000</item>
+    </style>
+
+    <style name="setting_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/btn_normal_selector</item>
+        <item name="android:drawableRight">@drawable/arrow_right</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:padding">12dp</item>
     </style>
 </resources>

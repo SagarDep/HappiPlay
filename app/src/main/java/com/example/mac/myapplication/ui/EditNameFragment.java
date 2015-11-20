@@ -4,6 +4,7 @@ package com.example.mac.myapplication.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.helper.FragmentHelper;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +28,21 @@ public class EditNameFragment extends android.support.v4.app.Fragment implements
     Button saveNickname;
     @Bind(R.id.et_nickname)
     EditText etNickname;
+    private String nickName;
 
+    private View rootView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        if (rootView ==null){
+            rootView = inflater.inflate(R.layout.fragment_edit_name, container, false);
+        }
+        ButterKnife.bind(this, rootView);
+        initViews();
+        return rootView;
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -37,9 +53,9 @@ public class EditNameFragment extends android.support.v4.app.Fragment implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.save_nickname:
-                updateTextListener.sendText(etNickname.getText().toString());
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                manager.popBackStack();
+                nickName = etNickname.getText().toString();
+                updateTextListener.sendText(nickName);
+                FragmentHelper.manager.popBackStack();
                 break;
         }
     }
@@ -53,7 +69,7 @@ public class EditNameFragment extends android.support.v4.app.Fragment implements
     }
 
     @Override
-    public void onAttach(Context  context) {
+    public void onAttach(Context context) {
         super.onAttach(context);
         try {
             updateTextListener = (UpdateTextListener) (context);
@@ -63,18 +79,11 @@ public class EditNameFragment extends android.support.v4.app.Fragment implements
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_edit_name, container, false);
-        ButterKnife.bind(this, view);
-        initViews();
-        return view;
-    }
+
 
     private void initViews() {
         saveNickname.setOnClickListener(this);
+        saveNickname.setText(nickName);
     }
 
 

@@ -7,50 +7,25 @@
               android:orientation="vertical"
               tools:context="com.example.mac.myapplication.ui.MeFragment">
 
+    <include layout="@layout/action_bar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="12dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:src="@drawable/message"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="UserName"
-                android:textColor="@color/dark_text"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:src="@drawable/setting"/>
-
-        </FrameLayout>
-
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp"
             android:src="@drawable/game_icon"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -61,9 +36,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:text="278"
-                    android:textColor="@color/dark_text"/>
+                    android:textColor="@color/dark_text"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -83,9 +58,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:text="28"
-                    android:textColor="@color/dark_text"/>
+                    android:textColor="@color/dark_text"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -94,6 +69,37 @@
                     android:textColor="@color/light_text"
                     android:textSize="12sp"/>
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_toLeftOf="@+id/browse_picture"
+                    android:background="@drawable/btn_round_selector"
+                    android:drawableLeft="@drawable/upload_camera"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="6dp"
+                    android:text="上传图片"
+                    android:textColor="@color/dark_text"/>
+
+                <Button
+                    android:id="@+id/browse_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_round_selector"
+                    android:drawableLeft="@drawable/browse_photo"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="5dp"
+                    android:text="看美图"
+                    android:textColor="@color/dark_text"/>
+            </RelativeLayout>
 
 
         </LinearLayout>
@@ -125,7 +131,7 @@
         android:layout_width="180dp"
         android:layout_height="2dp"
         android:layout_marginTop="12dp"
-        android:background="@color/material_blue_grey_800"/>
+        android:background="@color/dark_text"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

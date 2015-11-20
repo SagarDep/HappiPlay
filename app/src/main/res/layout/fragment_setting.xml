@@ -4,11 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_back"
     android:orientation="vertical"
     tools:context="com.example.mac.myapplication.ui.LikeActivity">
-    <TextView
-        android:text="@string/setting"
-        android:textSize="22sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="12dp"
+        tools:showIn="@layout/fragment_me">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:src="@drawable/arrow_back"/>
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="设置"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp"/>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/edit_profile"
+        android:layout_marginTop="12dp"
+        android:text="个人资料"
+        style="@style/setting_item"/>
+    <Button
+        android:layout_marginTop="12dp"
+        style="@style/setting_item"
+        android:text="隱私"
+        />
+    <Button
+        style="@style/setting_item"
+        android:text="密碼"
+        />
+    <Button
+        android:layout_marginTop="12dp"
+        style="@style/setting_item"
+        android:text="用戶幫助"
+        />
+    <Button
+        style="@style/setting_item"
+        android:text="服務條款"
+        />
+    <Button
+        android:layout_marginTop="12dp"
+        style="@style/setting_item"
+        android:text="為我們評分"
+        />
+    <Button
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_normal_selector_red"
+        android:padding="12dp"
+        android:text="退出"
+        android:textColor="@color/white"
+        />
+
+<TextView
+    android:layout_marginTop="48dp"
+    android:gravity="center"
+    android:text="v1.01"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 </LinearLayout>

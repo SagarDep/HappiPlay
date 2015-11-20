@@ -3,8 +3,6 @@ package com.example.mac.myapplication.ui;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.res.Resources;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -25,12 +24,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.droid.CityChooseActivity;
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,15 +66,23 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     TextView editCity;
     @Bind(R.id.edit_save)
     Button editSave;
+    @Bind(R.id.back)
+    ImageView back;
+    @Bind(R.id.user_edit_fragment)
+    FrameLayout userEditFragment;
     private TextView editTakePhoto;
     private TextView editChoosePhoto;
 
     private Toolbar toolbar;
     private Context mContext;
-    private View view;
-    private String nickName;
+
+    private Fragment fragment;
+    private View rootView;
     private String filePath;
+    private String nickName;
     private String birthday;
+    private String gender;
+    private String city;
 
     public UserEditFragment() {
         // Required empty public constructor
@@ -83,16 +93,19 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = getActivity();
-        view = inflater.inflate(R.layout.fragment_user_edit, container, false);
-        ButterKnife.bind(this, view);
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_user_edit, container, false);
+            ButterKnife.bind(this, rootView);
+        }
+        ButterKnife.bind(this, rootView);
         initView();
-        return view;
+        return rootView;
     }
 
     private void initView() {
-        editNickname = (TextView) view.findViewById(R.id.edit_nickname);
-        toolbar = BaseActivity.getToolbar();
-        toolbar.setTitle("个人资料");
+        editNickname = (TextView) rootView.findViewById(R.id.edit_nickname);
+//        toolbar = BaseActivity.getToolbar();
+//        toolbar.setTitle("个人资料");
 
         editBirthday.setOnClickListener(this);
         editCity.setOnClickListener(this);
@@ -100,10 +113,24 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
         editHead.setOnClickListener(this);
         editNickname.setOnClickListener(this);
         editSave.setOnClickListener(this);
+        back.setOnClickListener(this);
+
+
+        if (!TextUtils.isEmpty(birthday)) {
+            editBirthday.setText(birthday);
+        }
+        if (!TextUtils.isEmpty(gender)) {
+            editGender.setText(gender);
+        }
+        if (!TextUtils.isEmpty(city)) {
+            editCity.setText(city);
+        }
 
         if (!TextUtils.isEmpty(nickName)) {
             editNickname.setText(nickName);
         }
+
+
     }
 
     @Override
@@ -123,7 +150,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
                         birthday = year + "年" + monthOfYear + "月" + dayOfMonth + "日";
                         editBirthday.setText(birthday);
                     }
-                }, calendar.get(Calendar.YEAR), calendar.get(calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;
             case R.id.edit_city:
                 Intent cityChoose = new Intent(mContext, CityChooseActivity.class);
@@ -137,67 +164,67 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
                         .setItems(items, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                editGender.setText(items[which]);
+                                gender = items[which];
+                                editGender.setText(gender);
                             }
                         }).show();
                 break;
             case R.id.edit_head:
-                View popView = LayoutInflater.from(mContext).inflate(
-                        R.layout.popup_edit_head, null);
-                RelativeLayout back = (RelativeLayout) popView.findViewById(R.id.popup_back);
-
-                final PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
-                popupWindow.setTouchable(true);
-                popupWindow.setOutsideTouchable(true);
-                popupWindow.setAnimationStyle(R.style.PopupAnimation);
-                popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
-                back.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
-                editChoosePhoto = (TextView) popView.findViewById(R.id.edit_choose_photo);
-                editTakePhoto = (TextView) popView.findViewById(R.id.edit_take_photo);
-                editChoosePhoto.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        pickPhoto();
-                        popupWindow.dismiss();
-                    }
-                });
-                editTakePhoto.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        takePhoto();
-                        popupWindow.dismiss();
-                    }
-                });
-
+                editHeadPopWindow();
                 break;
             case R.id.edit_nickname:
-                EditNameFragment editNameFragment = new EditNameFragment();
-                OpenFragment(editNameFragment);
+                startEditName();
                 break;
             case R.id.edit_save:
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction transaction=manager.beginTransaction();
-                manager.popBackStack();
+                FragmentHelper.manager.popBackStack();
                 break;
-
+            case R.id.back:
+                FragmentHelper.manager.popBackStack();
+                break;
         }
     }
 
-    private void OpenFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(
-                R.anim.fab_in, R.anim.abc_fade_out,
-                R.anim.abc_fade_in, R.anim.fab_out);
-        transaction.replace(R.id.fragment, fragment);
-        transaction.addToBackStack("");
-        transaction.commit();
+    private void editHeadPopWindow() {
+        View popView = LayoutInflater.from(mContext).inflate(
+                R.layout.popup_edit_head, null);
+        RelativeLayout back = (RelativeLayout) popView.findViewById(R.id.popup_back);
+
+        final PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+        popupWindow.setTouchable(true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setAnimationStyle(R.style.PopupAnimation);
+        popupWindow.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        editChoosePhoto = (TextView) popView.findViewById(R.id.edit_choose_photo);
+        editTakePhoto = (TextView) popView.findViewById(R.id.edit_take_photo);
+        editChoosePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickPhoto();
+                popupWindow.dismiss();
+            }
+        });
+        editTakePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePhoto();
+                popupWindow.dismiss();
+            }
+        });
     }
+
+    private void startEditName() {
+        if (fragment==null){
+            fragment = new EditNameFragment();
+        }
+        FragmentHelper.replaceFragment(R.id.content, fragment, "edit_name");
+    }
+
 
     private void pickPhoto() {
         Intent pick = new Intent(Intent.ACTION_PICK, null);
@@ -252,7 +279,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
                 break;
             case REQUEST_CITY_CHOOSE:
                 if (data != null) {
-                    String city = data.getStringExtra("city");
+                    city = data.getStringExtra("city");
                     editCity.setText(city);
                 }
                 break;
@@ -280,6 +307,8 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void sendText(String text) {
         nickName = text;
-        Log.i("test", text);
+        editNickname.setText(nickName);
     }
+
+
 }

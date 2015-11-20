@@ -63,7 +63,7 @@ public class UserFragment extends android.support.v4.app.Fragment {
 
     private void initToolbar() {
         setHasOptionsMenu(true);
-        toolbar = BaseActivity.getToolbar();
+        toolbar = ((BaseActivity)getActivity()).getToolbar();
         toolbar.setVisibility(View.VISIBLE);
         toolbar.setTitle("我");
         toolbar.setBackgroundResource(R.color.app_style);

@@ -25,7 +25,6 @@ public class PagerFragmentAll extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("test",">>>>All");
         return inflater.inflate(R.layout.fragment_pager_all, container, false);
     }
 
