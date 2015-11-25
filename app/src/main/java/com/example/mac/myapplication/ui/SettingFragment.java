@@ -73,7 +73,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         String tag="user_edit";
         if (fragment==null){
             fragment = new UserEditFragment();
-            Log.i("test","new userEdit>>>");
         }
         FragmentHelper.replaceFragment(R.id.content, fragment, tag);
     }

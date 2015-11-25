@@ -22,6 +22,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
@@ -56,7 +57,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     private static final String IMAGE_FILE_NAME = "photo";
     @Bind(R.id.edit_head)
     TextView editHead;
-    //    @Bind(R.id.edit_nickname)
+    @Bind(R.id.edit_nickname)
     TextView editNickname;
     @Bind(R.id.edit_gender)
     TextView editGender;
@@ -65,7 +66,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     @Bind(R.id.edit_city)
     TextView editCity;
     @Bind(R.id.edit_save)
-    Button editSave;
+    TextView editSave;
     @Bind(R.id.back)
     ImageView back;
     @Bind(R.id.user_edit_fragment)
@@ -103,10 +104,11 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     }
 
     private void initView() {
-        editNickname = (TextView) rootView.findViewById(R.id.edit_nickname);
 //        toolbar = BaseActivity.getToolbar();
 //        toolbar.setTitle("个人资料");
-
+//        InputMethodManager imm = (InputMethodManager) getContext().
+//                getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
         editBirthday.setOnClickListener(this);
         editCity.setOnClickListener(this);
         editGender.setOnClickListener(this);
@@ -307,6 +309,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void sendText(String text) {
         nickName = text;
+        editNickname = (TextView) rootView.findViewById(R.id.edit_nickname);
         editNickname.setText(nickName);
     }
 

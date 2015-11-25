@@ -1,12 +1,98 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.example.mac.myapplication.ui.NearbyFragment">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
+              tools:context="com.example.mac.myapplication.ui.NearbyFragment">
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:padding="12dp">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:src="@drawable/message"/>
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="邂逅"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:src="@drawable/camera"/>
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/indicator_recent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/all_select"
+            android:text="最近更新"
+            android:textColor="@color/unselect_text"/>
+
+        <TextView
+            android:id="@+id/indicator_guess"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/like_unselect"
+            android:text="猜你喜歡"
+            android:textColor="@color/unselect_text"/>
+
+        <TextView
+            android:id="@+id/indicator_online"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/like_unselect"
+            android:text="在線用戶"
+            android:textColor="@color/unselect_text"/>
+
+        <TextView
+            android:id="@+id/indicator_recommend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/like_unselect"
+            android:text="推薦用戶"
+            android:textColor="@color/unselect_text"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/tab_indicator"
+        android:layout_width="60dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/light_text"/>
+    <android.support.v4.view.ViewPager
+        android:background="@color/app_back"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+</LinearLayout>

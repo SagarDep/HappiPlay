@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -42,7 +43,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.nearby_card, parent, false);
         CardViewHolder holder = new CardViewHolder(view);
-        holder.setIsRecyclable(true);
+//        holder.setIsRecyclable(true);
         return holder;
     }
 
@@ -59,14 +60,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
             return;
         }
 
+        holder.like_it.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "test"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
         if (recyclerViewClick != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.card_img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     recyclerViewClick.onItemClick(v, position);
                 }
             });
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            holder.card_img.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     recyclerViewClick.onItemLongClick(v, position);
@@ -92,6 +99,7 @@ class CardViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView user_head;
     public ImageView card_img;
+    public ImageView like_it;
 
     public CardViewHolder(View itemView) {
         super(itemView);
@@ -101,5 +109,6 @@ class CardViewHolder extends RecyclerView.ViewHolder {
         user_photo_num = (TextView) itemView.findViewById(R.id.photo_num);
         card_img = (ImageView) itemView.findViewById(R.id.card_img);
         user_head = (ImageView) itemView.findViewById(R.id.user_head);
+        like_it= (ImageView) itemView.findViewById(R.id.like_it);
     }
 }

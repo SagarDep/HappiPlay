@@ -3,11 +3,8 @@ package com.example.mac.myapplication.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +35,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     ImageView message;
     @Bind(R.id.setting)
     ImageView setting;
-    private ArrayList<Fragment> views = new ArrayList<>();
+    private ArrayList<Fragment> fragments = new ArrayList<>();
     private int indicatorWidth;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -80,10 +77,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViewPager() {
-        Log.i("test", "initViewpager");
-        views.add(new PagerFragmentAll());
-        views.add(new PagerFragmentLike());
-        viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
+        fragments.add(new PagerFragmentAll());
+        fragments.add(new PagerFragmentLike());
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragments));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -135,33 +131,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    class MyAdapter extends FragmentPagerAdapter {
-        public MyAdapter(android.support.v4.app.FragmentManager fm) {
-            super(fm);
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-            return views.get(position);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "";
-        }
-
-
-        @Override
-        public int getCount() {
-            return views.size();
-        }
-
-    }
 
     private void startSetting() {
         if (fragment==null){
             fragment = new SettingFragment();
-            Log.i("test","new setting>>>");
         }
         FragmentHelper.replaceFragment(R.id.content, fragment, "setting");
         FragmentHelper.hideTab();

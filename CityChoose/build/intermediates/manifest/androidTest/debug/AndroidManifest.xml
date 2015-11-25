@@ -3,7 +3,7 @@
     package="com.droid.test" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <instrumentation
@@ -35,7 +35,7 @@
         <activity
             android:name="com.droid.CityChooseActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" >
         </activity>
     </application>

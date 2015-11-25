@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:padding="5dp"
-    >
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/user_head"
@@ -30,7 +29,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="name"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/dark_text"/>
 
         <TextView
             android:id="@+id/user_city"
@@ -39,6 +38,7 @@
             android:layout_weight="1"
             android:gravity="bottom"
             android:paddingLeft="5dp"
+            android:textSize="12sp"
             android:paddingRight="5dp"
             android:text="上海"/>
     </LinearLayout>
@@ -65,12 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="21"
+            android:textSize="12sp"
             android:textColor="@android:color/white"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="岁"
+            android:textSize="10sp"
             android:textColor="@android:color/white"/>
     </LinearLayout>
     <TextView
@@ -80,6 +82,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:textSize="10sp"
         android:text="13"/>
 
     <ImageView

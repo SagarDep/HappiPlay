@@ -1,16 +1,21 @@
 package com.example.mac.myapplication;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +33,10 @@ import com.example.mac.myapplication.ui.EditNameFragment;
 import com.example.mac.myapplication.ui.HomeFragment;
 import com.example.mac.myapplication.ui.TabHosts;
 import com.example.mac.myapplication.ui.UserEditFragment;
+
+import java.util.Queue;
+import android.os.Handler;
+import java.util.logging.LogRecord;
 
 import butterknife.ButterKnife;
 
@@ -227,4 +236,5 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
     protected int getLayoutId() {
         return R.layout.main_activity_layout;
     }
+
 }

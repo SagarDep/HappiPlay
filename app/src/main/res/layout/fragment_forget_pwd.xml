@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/app_back"
+              android:orientation="vertical"
+              tools:context="com.example.mac.myapplication.ui.ForgetPwdFragment">
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="12dp"
+        tools:showIn="@layout/fragment_me">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:src="@drawable/arrow_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="開心玩﹣忘記密碼"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/login_background"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_normal_shape"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/register_user"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:drawableLeft="@drawable/login_user"
+                    android:hint="请输入註冊的Email"
+                    style="@style/LoginEditText"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/find_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_normal_selector_red"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

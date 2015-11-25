@@ -7,14 +7,14 @@ public enum TabHosts {
     HOME(0, R.string.home, R.drawable.indicator_home_selector,
             MoneyFragment.class),
 
-    BEAUTY(1, R.string.beauty, R.drawable.indicator_nearby_selector,
-            BeautyFragment.class),
+    BEAUTY(1, R.string.nearby, R.drawable.indicator_nearby_selector,
+            NearbyFragment.class),
 
     ACTIVITY(2, R.string.activity, R.drawable.indicator_box_selector,
             GamePlayFragment.class),
 
     USER(3, R.string.user, R.drawable.indicator_me_selector,
-            MeFragment.class);
+            LoginFragment.class);
 
     private int index;
     private int resName;

@@ -36,7 +36,7 @@
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/setting"
+                android:id="@+id/edit_save"
                 android:text="完成"
                 android:textColor="@color/dark_text"
                 android:layout_width="wrap_content"
@@ -45,56 +45,47 @@
 
         </FrameLayout>
 
-        <TextView
+        <Button
             android:id="@+id/edit_head"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_marginBottom="12dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/btn_normal_selector"
-            android:drawableLeft="@drawable/user_photo_num"
-            android:drawableRight="@drawable/game_icon"
+            android:drawableLeft="@drawable/user_avatar"
+            android:drawableRight="@drawable/icon"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:padding="10dp"
             android:textColor="@color/black"
             android:text="修改頭像"/>
 
-        <TextView
+        <Button
             android:id="@+id/edit_nickname"
             style="@style/UserEditTextView"
-            android:drawableLeft="@drawable/user_photo_num"
+            android:drawableLeft="@drawable/user_name"
             android:text="用戶暱稱"/>
 
-        <TextView
+        <Button
             android:id="@+id/edit_gender"
             style="@style/UserEditTextView"
-            android:drawableLeft="@drawable/user_photo_num"
+            android:drawableLeft="@drawable/user_gender"
             android:text="女"/>
 
-        <TextView
+        <Button
             android:id="@+id/edit_birthday"
             style="@style/UserEditTextView"
-            android:drawableLeft="@drawable/user_photo_num"
+            android:drawableLeft="@drawable/user_birthday"
             android:text="1990-10-10"/>
 
-        <TextView
+        <Button
             android:id="@+id/edit_city"
             style="@style/UserEditTextView"
             android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/user_photo_num"
+            android:drawableLeft="@drawable/user_location"
             android:text="上海 浦東新區"/>
 
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/edit_save"
-        android:layout_width="180dp"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/btn_normal_selector"
-        android:text="保存"
-        android:textSize="18sp"/>
+    </LinearLayout>
 
 </FrameLayout>
