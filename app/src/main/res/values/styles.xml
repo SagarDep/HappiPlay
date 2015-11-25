@@ -124,5 +124,6 @@
         <item name="android:paddingLeft">10dp</item>
         <item name="android:textColorHint">@color/darker_line</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:imeOptions">actionNext</item>
     </style>
 </resources>

@@ -4,7 +4,9 @@ package com.example.mac.myapplication.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ForgetPwdFragment extends Fragment implements View.OnClickListener {
+public class ForgetPwdFragment extends Fragment implements View.OnClickListener, TextWatcher {
 
 
     @Bind(R.id.back)
@@ -58,10 +60,12 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initViews() {
+        findPwd.setTextColor(getResources().getColor(R.color.white));
         if (getArguments()!=null){
             userName = getArguments().getString("userName");
             registerUser.setText(userName);
         }
+        registerUser.addTextChangedListener(this);
         registerUser.requestFocus();
         back.setOnClickListener(this);
         findPwd.setOnClickListener(this);
@@ -80,7 +84,6 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener 
                 FragmentHelper.manager.popBackStack();
                 break;
             case R.id.find_pwd:
-                userName = registerUser.getText().toString().replace(" ", "");
                 registerUser.setText(userName, TextView.BufferType.EDITABLE);
                 if (TextUtils.isEmpty(userName)) {
                     Toast.makeText(getContext(), "郵箱不能為空~", Toast.LENGTH_SHORT).show();
@@ -88,6 +91,27 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener 
                     imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        userName = registerUser.getText().toString().replace(" ", "");
+
+        if (TextUtils.isEmpty(userName)) {
+            findPwd.setEnabled(false);
+        } else {
+            findPwd.setEnabled(true);
         }
     }
 }

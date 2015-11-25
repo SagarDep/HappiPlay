@@ -4,13 +4,18 @@ package com.example.mac.myapplication.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterFragment extends Fragment implements View.OnClickListener {
+public class RegisterFragment extends Fragment implements View.OnClickListener, TextWatcher {
 
 
     @Bind(R.id.back)
@@ -37,6 +42,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     EditText registerPwd;
     @Bind(R.id.register)
     Button register;
+    @Bind(R.id.show_pwd)
+    CheckBox showPwd;
     private View rootView;
     private Fragment fragment;
     private String userName;
@@ -63,16 +70,31 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(registerUser, InputMethodManager.SHOW_IMPLICIT);
     }
+
     private void initViews() {
+        register.setTextColor(getResources().getColor(R.color.white));
         if (getArguments() != null) {
             userName = getArguments().getString("userName");
             registerUser.setText(userName);
         }
         registerUser.requestFocus();
+        registerUser.addTextChangedListener(this);
+        registerPwd.addTextChangedListener(this);
         back.setOnClickListener(this);
         registerUser.setOnClickListener(this);
         registerPwd.setOnClickListener(this);
         register.setOnClickListener(this);
+        showPwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    registerPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    registerPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+            }
+        });
     }
 
     @Override
@@ -88,9 +110,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 FragmentHelper.manager.popBackStack();
                 break;
             case R.id.register:
-                userName = registerUser.getText().toString().replace(" ", "");
                 registerUser.setText(userName, TextView.BufferType.EDITABLE);
-                userPwd = registerPwd.getText().toString();
                 if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPwd)) {
                     Toast.makeText(getContext(), "用戶名或者密碼不能為空~", Toast.LENGTH_SHORT).show();
                 } else {
@@ -98,6 +118,27 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     FragmentHelper.manager.popBackStack();
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        userName = registerUser.getText().toString().replace(" ", "");
+        userPwd = registerPwd.getText().toString();
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPwd)) {
+            register.setEnabled(false);
+        } else {
+            register.setEnabled(true);
         }
     }
 }

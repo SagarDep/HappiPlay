@@ -35,15 +35,16 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="96dp"
         android:layout_weight="1"
+        android:layout_gravity="center"
         android:background="@drawable/login_background"
         >
 
         <LinearLayout
-            android:layout_marginTop="140dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical"
             android:padding="12dp">
 
@@ -70,6 +71,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/btn_normal_selector_red"
                 android:gravity="center"
+                android:enabled="false"
                 android:text="下一步"
                 android:textColor="@color/white"/>
 

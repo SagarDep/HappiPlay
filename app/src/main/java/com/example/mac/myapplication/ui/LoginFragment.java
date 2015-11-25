@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener, TextWatcher {
 
     public static final String REGISTER = "register";
     public static final String FORGET = "forget";
@@ -68,6 +70,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViews() {
+        login.setTextColor(getResources().getColor(R.color.white));
+        loginUser.addTextChangedListener(this);
+        loginPwd.addTextChangedListener(this);
         login.setOnClickListener(this);
         loginUser.setOnClickListener(this);
         loginPwd.setOnClickListener(this);
@@ -92,9 +97,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login:
-                userName = loginUser.getText().toString().replace(" ", "");
                 loginUser.setText(userName, TextView.BufferType.EDITABLE);
-                userPwd = loginPwd.getText().toString();
                 if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPwd)) {
                     Toast.makeText(getContext(), "用戶名或者密碼不能為空~", Toast.LENGTH_SHORT).show();
                 } else {
@@ -106,13 +109,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.login_pwd:
                 break;
             case R.id.register:
-                userName = loginUser.getText().toString().replace(" ", "");
-                loginUser.setText(userName, TextView.BufferType.EDITABLE);
+
                 goNewFragment(REGISTER);
                 break;
             case R.id.forget_pwd:
-                userName = loginUser.getText().toString().replace(" ", "");
-                loginUser.setText(userName, TextView.BufferType.EDITABLE);
                 goNewFragment(FORGET);
                 break;
         }
@@ -134,5 +134,27 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             FragmentHelper.replaceFragment(R.id.content, fragment, fragmentTag);
         }
 
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        userName = loginUser.getText().toString().replace(" ", "");
+        userPwd = loginPwd.getText().toString();
+
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPwd)) {
+            login.setEnabled(false);
+        } else {
+            login.setEnabled(true);
+        }
     }
 }
