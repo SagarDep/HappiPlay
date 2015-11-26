@@ -87,9 +87,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
         showPwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     registerPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else {
+                } else {
                     registerPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
                 }
@@ -111,12 +111,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
                 break;
             case R.id.register:
                 registerUser.setText(userName, TextView.BufferType.EDITABLE);
-                if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPwd)) {
-                    Toast.makeText(getContext(), "用戶名或者密碼不能為空~", Toast.LENGTH_SHORT).show();
-                } else {
-                    imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
-                    FragmentHelper.manager.popBackStack();
-                }
+                imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
+                FragmentHelper.manager.popBackStack();
                 break;
         }
     }

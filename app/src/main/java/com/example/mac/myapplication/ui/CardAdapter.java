@@ -49,6 +49,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, final int position) {
+        View view = mInflater.inflate(R.layout.fragment_user_recent, null);
+        ImageView goTop = (ImageView) view.findViewById(R.id.go_top);
+        goTop.setVisibility(position > 10 ? View.VISIBLE : View.GONE);
+
         holder.user_name.setText(mData.get(position));
 
         int resId = mContext.getResources().getIdentifier("img_" + position, "drawable", mContext.getPackageName());
@@ -56,14 +60,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 //            holder.card_img.setScaleType(ImageView.ScaleType.FIT_CENTER);
             Glide.with(mContext).load(resId).fitCenter().into(holder.card_img);
             Glide.with(mContext).load(resId).into(holder.user_head);
-        }else {
+        } else {
             return;
         }
 
         holder.like_it.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "test"+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "test" + position, Toast.LENGTH_SHORT).show();
             }
         });
         if (recyclerViewClick != null) {
@@ -109,6 +113,6 @@ class CardViewHolder extends RecyclerView.ViewHolder {
         user_photo_num = (TextView) itemView.findViewById(R.id.photo_num);
         card_img = (ImageView) itemView.findViewById(R.id.card_img);
         user_head = (ImageView) itemView.findViewById(R.id.user_head);
-        like_it= (ImageView) itemView.findViewById(R.id.like_it);
+        like_it = (ImageView) itemView.findViewById(R.id.like_it);
     }
 }

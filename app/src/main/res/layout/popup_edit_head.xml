@@ -24,7 +24,7 @@
         android:layout_height="48dp"
         android:layout_above="@+id/edit_choose_photo"
         android:background="@drawable/btn_normal_selector"
-        android:drawableLeft="@drawable/camera"
+        android:drawableLeft="@drawable/upload_camera"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:padding="10dp"

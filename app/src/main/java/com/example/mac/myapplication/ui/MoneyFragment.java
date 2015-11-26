@@ -2,40 +2,53 @@ package com.example.mac.myapplication.ui;
 
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MoneyFragment extends android.support.v4.app.Fragment {
+public class MoneyFragment extends Fragment implements View.OnClickListener {
 
-    private ListView mListView;
+    @Bind(R.id.withdraw)
+    TextView withdraw;
+    @Bind(R.id.list_view)
+    ListView listView;
     private List<Map<String, Object>> dataList;
-
-    public MoneyFragment() {
-        // Required empty public constructor
-    }
-
+    private View rootView;
+    private Fragment fragment;
+    private InputMethodManager imm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_money, container, false);
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.fragment_money, container, false);
+            ButterKnife.bind(this, rootView);
+        }
+        FragmentHelper.showTab();
+        ButterKnife.bind(this, rootView);
         initData();
-        initViews(view);
-        return view;
+        initViews();
+        return rootView;
     }
 
     private void initData() {
@@ -77,13 +90,34 @@ public class MoneyFragment extends android.support.v4.app.Fragment {
 
     }
 
-    private void initViews(View view) {
-        mListView = (ListView) view.findViewById(R.id.list_view);
+    private void initViews() {
         String[] from = {"week", "date", "benefit"};
         int[] to = {R.id.benefit_weekday, R.id.benefit_date, R.id.benefit_day_money};
-        SimpleAdapter adapter = new SimpleAdapter(getContext(), dataList,R.layout.item_day_benefit, from, to);
-        mListView.setAdapter(adapter);
+        SimpleAdapter adapter = new SimpleAdapter(getContext(), dataList, R.layout.item_day_benefit, from, to);
+        listView.setAdapter(adapter);
+
+        withdraw.setOnClickListener(this);
     }
 
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.message:
+                break;
+            case R.id.withdraw:
+                if (fragment == null) {
+                    fragment = new WithdrawFragment();
+                }
+                FragmentHelper.replaceFragment(R.id.content, fragment, "withdraw");
+                FragmentHelper.hideTab();
+                break;
+        }
+    }
 }

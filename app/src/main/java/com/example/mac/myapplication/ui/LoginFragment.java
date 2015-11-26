@@ -98,11 +98,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Tex
         switch (v.getId()) {
             case R.id.login:
                 loginUser.setText(userName, TextView.BufferType.EDITABLE);
-                if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPwd)) {
-                    Toast.makeText(getContext(), "用戶名或者密碼不能為空~", Toast.LENGTH_SHORT).show();
-                } else {
-                    FragmentHelper.manager.popBackStack();
-                }
+                FragmentHelper.manager.popBackStack();
                 break;
             case R.id.login_user:
                 break;

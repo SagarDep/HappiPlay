@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class UserRecentFragment extends Fragment implements CardAdapter.OnRecycl
             @Override
             public void onClick(View v) {
                 recyclerView.scrollToPosition(0);
+                goTop.setVisibility(View.GONE);
             }
         });
     }
@@ -66,6 +68,21 @@ public class UserRecentFragment extends Fragment implements CardAdapter.OnRecycl
         }
         adapter = new CardAdapter(getContext(), mDataList, this);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                    int position = recyclerView.computeVerticalScrollOffset();
+                    goTop.setVisibility(position>4500?View.VISIBLE:View.GONE);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.i("test","scrolled "+dx+" "+dy);
+
+            }
+        });
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 

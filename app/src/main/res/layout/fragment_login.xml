@@ -9,21 +9,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:background="@color/white"
         android:gravity="center"
         android:text="開心玩﹣賬號登陸"
-        android:background="@color/white"
         android:textColor="@color/dark_text"
         android:textSize="16sp"/>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_background"
         android:layout_weight="1"
+        android:background="@drawable/login_background"
         >
 
         <LinearLayout
@@ -41,10 +43,10 @@
 
                 <EditText
                     android:id="@+id/login_user"
+                    style="@style/LoginEditText"
                     android:drawableLeft="@drawable/login_user"
                     android:hint="请输入手机号/邮箱"
-                    android:nextFocusForward="@+id/login_pwd"
-                    style="@style/LoginEditText"/>
+                    android:nextFocusForward="@+id/login_pwd"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -53,11 +55,11 @@
 
                 <EditText
                     android:id="@+id/login_pwd"
+                    style="@style/LoginEditText"
                     android:drawableLeft="@drawable/login_password"
                     android:hint="请输入密码"
                     android:inputType="textPassword"
-                    android:nextFocusForward="@+id/login"
-                    style="@style/LoginEditText"/>
+                    android:nextFocusForward="@+id/login"/>
 
             </LinearLayout>
 
@@ -66,8 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="12dp"
-                android:enabled="false"
                 android:background="@drawable/btn_normal_selector_red"
+                android:enabled="false"
                 android:gravity="center"
                 android:text="登陆"
                 android:textColor="@color/white"/>
@@ -124,26 +126,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="48dp">
+        android:layout_marginBottom="48dp"
+        android:gravity="center">
 
         <ImageView
-            android:layout_margin="12dp"
-            android:src="@drawable/login_fb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:src="@drawable/login_fb"/>
 
         <ImageView
-            android:layout_margin="12dp"
-            android:src="@drawable/login_qq"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:src="@drawable/login_qq"/>
 
         <ImageView
-            android:layout_margin="12dp"
-            android:src="@drawable/login_wechat"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:src="@drawable/login_wechat"/>
     </LinearLayout>
 
 </LinearLayout>

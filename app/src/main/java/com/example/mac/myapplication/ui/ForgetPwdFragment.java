@@ -51,6 +51,7 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener,
         initViews();
         return rootView;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -61,7 +62,7 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener,
 
     private void initViews() {
         findPwd.setTextColor(getResources().getColor(R.color.white));
-        if (getArguments()!=null){
+        if (getArguments() != null) {
             userName = getArguments().getString("userName");
             registerUser.setText(userName);
         }
@@ -85,11 +86,7 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener,
                 break;
             case R.id.find_pwd:
                 registerUser.setText(userName, TextView.BufferType.EDITABLE);
-                if (TextUtils.isEmpty(userName)) {
-                    Toast.makeText(getContext(), "郵箱不能為空~", Toast.LENGTH_SHORT).show();
-                }else {
-                    imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
-                }
+                imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
                 break;
         }
     }

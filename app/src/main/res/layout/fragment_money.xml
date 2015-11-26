@@ -32,7 +32,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/setting"
+            android:id="@+id/withdraw"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
