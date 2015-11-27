@@ -6,7 +6,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -37,6 +42,7 @@ import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,7 +55,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserEditFragment extends Fragment implements View.OnClickListener, EditNameFragment.UpdateTextListener {
+public class UserEditFragment extends BaseFragment implements View.OnClickListener, EditNameFragment.UpdateTextListener {
     private static final int REQUEST_PICK_PHOTO = 1;
     private static final int REQUEST_CAPTURE_PHOTO = 2;
     private static final int REQUEST_CUT_PHOTO = 3;
@@ -71,44 +77,22 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     ImageView back;
     @Bind(R.id.user_edit_fragment)
     FrameLayout userEditFragment;
+
     private TextView editTakePhoto;
     private TextView editChoosePhoto;
 
     private Toolbar toolbar;
-    private Context mContext;
-
     private Fragment fragment;
-    private View rootView;
     private String filePath;
     private String nickName;
     private String birthday;
     private String gender;
     private String city;
 
-    public UserEditFragment() {
-        // Required empty public constructor
-    }
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mContext = getActivity();
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_user_edit, container, false);
-            ButterKnife.bind(this, rootView);
-        }
-        ButterKnife.bind(this, rootView);
-        initView();
-        return rootView;
-    }
-
-    private void initView() {
+    protected void initViews() {
 //        toolbar = BaseActivity.getToolbar();
 //        toolbar.setTitle("个人资料");
-//        InputMethodManager imm = (InputMethodManager) getContext().
-//                getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
         editBirthday.setOnClickListener(this);
         editCity.setOnClickListener(this);
         editGender.setOnClickListener(this);
@@ -116,7 +100,6 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
         editNickname.setOnClickListener(this);
         editSave.setOnClickListener(this);
         back.setOnClickListener(this);
-
 
         if (!TextUtils.isEmpty(birthday)) {
             editBirthday.setText(birthday);
@@ -132,7 +115,11 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
             editNickname.setText(nickName);
         }
 
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_user_edit;
     }
 
     @Override
@@ -146,7 +133,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
         switch (v.getId()) {
             case R.id.edit_birthday:
                 Calendar calendar = Calendar.getInstance();
-                new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
+                new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         birthday = year + "年" + monthOfYear + "月" + dayOfMonth + "日";
@@ -155,14 +142,14 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;
             case R.id.edit_city:
-                Intent cityChoose = new Intent(mContext, CityChooseActivity.class);
+                Intent cityChoose = new Intent(getContext(), CityChooseActivity.class);
                 startActivityForResult(cityChoose, REQUEST_CITY_CHOOSE);
 
                 break;
             case R.id.edit_gender:
                 final String[] items = {"男", "女"};
 
-                new AlertDialog.Builder(mContext).setTitle("选择性别")
+                new AlertDialog.Builder(getContext()).setTitle("选择性别")
                         .setItems(items, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -187,7 +174,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     }
 
     private void editHeadPopWindow() {
-        View popView = LayoutInflater.from(mContext).inflate(
+        View popView = LayoutInflater.from(getContext()).inflate(
                 R.layout.popup_edit_head, null);
         RelativeLayout back = (RelativeLayout) popView.findViewById(R.id.popup_back);
 
@@ -221,7 +208,7 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
     }
 
     private void startEditName() {
-        if (fragment==null){
+        if (fragment == null) {
             fragment = new EditNameFragment();
         }
         FragmentHelper.replaceFragment(R.id.content, fragment, "edit_name");
@@ -257,8 +244,10 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
                 break;
             case REQUEST_CAPTURE_PHOTO:
                 if (filePath != null && resultCode == BaseActivity.RESULT_OK) {
-                    File file = new File(filePath);
-                    cutPhoto(Uri.fromFile(file));
+                    Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+                    bitmap = turnPicture(bitmap, readPictureDegree(filePath));
+                    Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, null, null));
+                    cutPhoto(uri);
                 }
 
                 break;
@@ -269,12 +258,12 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
                     uploadPhoto();
                     Drawable photo = null;
                     try {
-                        photo = Drawable.createFromStream(mContext.getContentResolver().openInputStream(uriData), null);
+                        photo = Drawable.createFromStream(getContext().getContentResolver().openInputStream(uriData), null);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                     Drawable left;
-                    left = ContextCompat.getDrawable(mContext, R.drawable.user_photo_num);
+                    left = ContextCompat.getDrawable(getContext(), R.drawable.user_photo_num);
                     editHead.setCompoundDrawablesWithIntrinsicBounds(left, null, photo, null);
 //                    editHead.setCompoundDrawablePadding(5);
                 }
@@ -313,5 +302,34 @@ public class UserEditFragment extends Fragment implements View.OnClickListener, 
         editNickname.setText(nickName);
     }
 
+    public static Bitmap turnPicture(Bitmap img, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(+degree); /*翻转90度*/
+        int width = img.getWidth();
+        int height = img.getHeight();
+        img = Bitmap.createBitmap(img, 0, 0, width, height, matrix, true);
+        return img;
+    }
 
+    public static int readPictureDegree(String path) {
+        int degree = 0;
+        try {
+            ExifInterface exifInterface = new ExifInterface(path);
+            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return degree;
+    }
 }

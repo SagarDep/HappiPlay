@@ -9,23 +9,19 @@ import android.view.ViewGroup;
 
 import com.example.mac.myapplication.R;
 
+import butterknife.ButterKnife;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessageFragment extends Fragment {
+public class MessageFragment extends BaseFragment {
 
-
-    public MessageFragment() {
-        // Required empty public constructor
+    protected void initViews() {
     }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_message;
     }
-
 
 }

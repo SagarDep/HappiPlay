@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ForgetPwdFragment extends Fragment implements View.OnClickListener, TextWatcher {
+public class ForgetPwdFragment extends BaseFragment implements View.OnClickListener, TextWatcher {
 
 
     @Bind(R.id.back)
@@ -40,17 +40,6 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener,
     private String userName;
     private InputMethodManager imm;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_forget_pwd, container, false);
-            ButterKnife.bind(this, rootView);
-        }
-        ButterKnife.bind(this, rootView);
-        initViews();
-        return rootView;
-    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -60,7 +49,7 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener,
         imm.showSoftInput(registerUser, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    private void initViews() {
+    protected void initViews() {
         findPwd.setTextColor(getResources().getColor(R.color.white));
         if (getArguments() != null) {
             userName = getArguments().getString("userName");
@@ -70,6 +59,11 @@ public class ForgetPwdFragment extends Fragment implements View.OnClickListener,
         registerUser.requestFocus();
         back.setOnClickListener(this);
         findPwd.setOnClickListener(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_forget_pwd;
     }
 
     @Override

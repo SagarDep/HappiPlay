@@ -10,6 +10,6 @@
     <string name="service_not_available">service_not_available</string>
     <style name="AppTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 </resources>

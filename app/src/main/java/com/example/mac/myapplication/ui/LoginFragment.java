@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment implements View.OnClickListener, TextWatcher {
+public class LoginFragment extends BaseFragment implements View.OnClickListener, TextWatcher {
 
     public static final String REGISTER = "register";
     public static final String FORGET = "forget";
@@ -48,28 +48,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Tex
     private String userName;
     private String userPwd;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_login, container, false);
-            ButterKnife.bind(this, rootView);
-        }
-        FragmentHelper.hideTab();
-        ButterKnife.bind(this, rootView);
-        initViews();
-        if (isLogin()) {
-            if (fragment == null) {
-                fragment = new MeFragment();
-            }
-            FragmentTransaction transaction = FragmentHelper.manager.beginTransaction();
-            transaction.replace(R.id.content, fragment, "me");
-            transaction.commit();
-        }
-        return rootView;
-    }
-
-    private void initViews() {
+    protected void initViews() {
         login.setTextColor(getResources().getColor(R.color.white));
         loginUser.addTextChangedListener(this);
         loginPwd.addTextChangedListener(this);
@@ -78,12 +57,27 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Tex
         loginPwd.setOnClickListener(this);
         register.setOnClickListener(this);
         forgetPwd.setOnClickListener(this);
+
+        if (isLogin()) {
+            if (fragment == null) {
+                fragment = new MeFragment();
+            }
+            FragmentTransaction transaction = FragmentHelper.manager.beginTransaction();
+            transaction.replace(R.id.content, fragment, "me");
+            transaction.commit();
+        }
+        FragmentHelper.hideTab();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_login;
     }
 
 
     public static boolean isLogin() {
         SharedPreferences sp = MainActivity.context.getSharedPreferences("happiplay", Context.MODE_PRIVATE);
-        isLogin = sp.getBoolean("isLogin", false);
+        isLogin = sp.getBoolean("isLogin", true);
         return isLogin;
     }
 

@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EditNameFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
+public class EditNameFragment extends BaseFragment implements View.OnClickListener {
 
     UpdateTextListener updateTextListener;
     @Bind(R.id.save_nickname)
@@ -35,20 +35,8 @@ public class EditNameFragment extends android.support.v4.app.Fragment implements
     EditText etNickname;
     private String nickName;
 
-    private View rootView;
     private InputMethodManager imm;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_edit_name, container, false);
-        }
-        ButterKnife.bind(this, rootView);
-        initViews();
-        return rootView;
-    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -96,11 +84,16 @@ public class EditNameFragment extends android.support.v4.app.Fragment implements
     }
 
 
-    private void initViews() {
+    protected void initViews() {
         saveNickname.setOnClickListener(this);
         etNickname.setFocusable(true);
         etNickname.setFocusableInTouchMode(true);
         etNickname.requestFocus();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_edit_name;
     }
 
 

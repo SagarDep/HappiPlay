@@ -26,32 +26,17 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MoneyFragment extends Fragment implements View.OnClickListener {
+public class MoneyFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.withdraw)
     TextView withdraw;
     @Bind(R.id.list_view)
     ListView listView;
     private List<Map<String, Object>> dataList;
-    private View rootView;
     private Fragment fragment;
     private InputMethodManager imm;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_money, container, false);
-            ButterKnife.bind(this, rootView);
-        }
-        FragmentHelper.showTab();
-        ButterKnife.bind(this, rootView);
-        initData();
-        initViews();
-        return rootView;
-    }
-
-    private void initData() {
+    protected void initData() {
         dataList = new ArrayList<>();
         Map<String, Object> dayMap = new HashMap<>();
         dayMap.put("week", "周一");
@@ -90,13 +75,19 @@ public class MoneyFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void initViews() {
+    protected void initViews() {
+        FragmentHelper.showTab();
+
         String[] from = {"week", "date", "benefit"};
         int[] to = {R.id.benefit_weekday, R.id.benefit_date, R.id.benefit_day_money};
         SimpleAdapter adapter = new SimpleAdapter(getContext(), dataList, R.layout.item_day_benefit, from, to);
         listView.setAdapter(adapter);
-
         withdraw.setOnClickListener(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_money;
     }
 
 

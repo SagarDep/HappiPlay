@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends Fragment implements View.OnClickListener {
+public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.tab_indicator)
     View tabIndicator;
@@ -41,21 +41,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     ViewPager viewPager;
     private View rootView;
     private Fragment fragment;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_me, null);
-            ButterKnife.bind(this, rootView);
-            initViewPager();
-            initIndicator(2);
-            initButton();
-        }
-        FragmentHelper.showTab();
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
     private void initButton() {
         setting.setOnClickListener(this);
@@ -79,7 +64,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private void initViewPager() {
         fragments.add(new PagerFragmentAll());
         fragments.add(new PagerFragmentLike());
-        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(),fragments));
+        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(), fragments));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -132,9 +117,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     private void startSetting() {
-        if (fragment==null){
+        if (fragment == null) {
             fragment = new SettingFragment();
         }
         FragmentHelper.replaceFragment(R.id.content, fragment, "setting");
@@ -142,4 +126,16 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    @Override
+    protected void initViews() {
+        initViewPager();
+        initIndicator(2);
+        initButton();
+        FragmentHelper.showTab();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_me;
+    }
 }

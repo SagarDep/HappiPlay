@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterFragment extends Fragment implements View.OnClickListener, TextWatcher {
+public class RegisterFragment extends BaseFragment implements View.OnClickListener, TextWatcher {
 
 
     @Bind(R.id.back)
@@ -50,19 +50,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     private String userPwd;
     private InputMethodManager imm;
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_register, container, false);
-            ButterKnife.bind(this, rootView);
-        }
-        ButterKnife.bind(this, rootView);
-        initViews();
-        return rootView;
-    }
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -71,7 +58,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
         imm.showSoftInput(registerUser, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    private void initViews() {
+    protected void initViews() {
         register.setTextColor(getResources().getColor(R.color.white));
         if (getArguments() != null) {
             userName = getArguments().getString("userName");
@@ -95,6 +82,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
                 }
             }
         });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_register;
     }
 
     @Override

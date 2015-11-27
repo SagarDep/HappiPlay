@@ -1,6 +1,7 @@
 package com.example.mac.myapplication.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.mac.myapplication.R;
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WithdrawFragment extends Fragment implements View.OnClickListener, TextWatcher {
+public class WithdrawFragment extends BaseFragment implements View.OnClickListener, TextWatcher {
 
     @Bind(R.id.back)
     ImageView back;
@@ -36,32 +38,39 @@ public class WithdrawFragment extends Fragment implements View.OnClickListener, 
     EditText withdrawAmount;
     @Bind(R.id.withdraw)
     Button withdraw;
-
+    @Bind(R.id.pay_way)
+    RadioGroup payWay;
+    @Bind(R.id.withdraw_intro)
+    TextView withdrawIntro;
+    private InputMethodManager imm;
     private View rootView;
     private Fragment fragment;
-    private InputMethodManager imm;
     private String userName;
     private String amount;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_withdraw, container, false);
-            ButterKnife.bind(this, rootView);
-        }
-        ButterKnife.bind(this, rootView);
-        initViews();
-        return rootView;
-    }
+    protected void initViews() {
 
-    private void initViews() {
+
         back.setOnClickListener(this);
         withdrawHistory.setOnClickListener(this);
         withdrawAccount.requestFocus();
+        payWay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                imm = (InputMethodManager) withdrawAccount.getContext().
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(withdrawAccount, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
         withdrawAccount.addTextChangedListener(this);
         withdrawAmount.addTextChangedListener(this);
         withdraw.setOnClickListener(this);
+        withdrawIntro.setOnClickListener(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_withdraw;
     }
 
     @Override
@@ -76,9 +85,15 @@ public class WithdrawFragment extends Fragment implements View.OnClickListener, 
             case R.id.back:
                 FragmentHelper.manager.popBackStack();
                 break;
+            case R.id.withdraw_intro:
+                Bundle data = new Bundle();
+                data.putString("url", "http://www.baidu.com");
+                fragment = new WebviewFragment();
+                fragment.setArguments(data);
+                FragmentHelper.replaceFragment(R.id.withdraw_content, fragment, "webview");
+                break;
             case R.id.withdraw:
                 withdrawAccount.setText(userName, TextView.BufferType.EDITABLE);
-
                 FragmentHelper.manager.popBackStack();
                 break;
         }

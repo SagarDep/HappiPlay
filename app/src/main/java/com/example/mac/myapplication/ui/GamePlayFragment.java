@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GamePlayFragment extends android.support.v4.app.Fragment implements CardAdapter.OnRecyclerViewClickListener {
+public class GamePlayFragment extends BaseFragment implements CardAdapter.OnRecyclerViewClickListener {
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @Bind(R.id.segment_game)
@@ -33,44 +33,35 @@ public class GamePlayFragment extends android.support.v4.app.Fragment implements
     private GameAdapter adapter;
     private List<String> mDataList;
 
-    public GamePlayFragment() {
-        // Required empty public constructor
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mContext = getActivity();
-        View view = inflater.inflate(R.layout.fragment_game_play, container, false);
-        ButterKnife.bind(this, view);
-        initRecyclerView(view);
-        initSegment();
-        return view;
-    }
 
     private void initSegment() {
         segmentGame.setOnSegmentControlClickListener(new SegmentControl.OnSegmentControlClickListener() {
             @Override
             public void onSegmentControlClick(int index) {
-                if (index==0){
+                if (index == 0) {
 
-                }else if (index ==1){
+                } else if (index == 1) {
 
                 }
             }
         });
     }
 
-    private void initRecyclerView(View view) {
-        initData();
-        adapter = new GameAdapter(mContext, mDataList, this);
+    protected void initViews() {
+        adapter = new GameAdapter(getContext(), mDataList, this);
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.addItemDecoration(new DividerGridItemDecoration(mContext));
-        mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
+        mRecyclerView.addItemDecoration(new DividerGridItemDecoration(getContext()));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+
+        initSegment();
     }
 
-    private void initData() {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_game_play;
+    }
+
+    protected void initData() {
         mDataList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             mDataList.add("" + i);
@@ -86,12 +77,12 @@ public class GamePlayFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(mContext, position + "clicked!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), position + "clicked!", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onItemLongClick(View view, int position) {
-        Toast.makeText(mContext, position + "long clicked!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), position + "long clicked!", Toast.LENGTH_SHORT).show();
     }
 }

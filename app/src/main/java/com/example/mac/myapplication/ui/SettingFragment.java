@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends Fragment implements View.OnClickListener {
+public class SettingFragment extends BaseFragment implements View.OnClickListener {
 
 
     @Bind(R.id.edit_profile)
@@ -30,25 +30,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     ImageView back;
     private Fragment fragment;
 
-    public SettingFragment() {
-        // Required empty public constructor
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_setting, container, false);
-
-        ButterKnife.bind(this, view);
-        initButton();
-        return view;
-    }
-
-    private void initButton() {
-        editProfile.setOnClickListener(this);
-        back.setOnClickListener(this);
-    }
 
 
     @Override
@@ -75,5 +56,16 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
             fragment = new UserEditFragment();
         }
         FragmentHelper.replaceFragment(R.id.content, fragment, tag);
+    }
+
+    @Override
+    protected void initViews() {
+        editProfile.setOnClickListener(this);
+        back.setOnClickListener(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_setting;
     }
 }
