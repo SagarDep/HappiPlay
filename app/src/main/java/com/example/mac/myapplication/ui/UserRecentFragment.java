@@ -79,7 +79,6 @@ public class UserRecentFragment extends Fragment implements CardAdapter.OnRecycl
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Log.i("test","scrolled "+dx+" "+dy);
 
             }
         });

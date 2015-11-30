@@ -43,13 +43,11 @@ public class WithdrawFragment extends BaseFragment implements View.OnClickListen
     @Bind(R.id.withdraw_intro)
     TextView withdrawIntro;
     private InputMethodManager imm;
-    private View rootView;
     private Fragment fragment;
     private String userName;
     private String amount;
 
     protected void initViews() {
-
 
         back.setOnClickListener(this);
         withdrawHistory.setOnClickListener(this);
@@ -83,6 +81,9 @@ public class WithdrawFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
+                if (imm!=null){
+                    imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
+                }
                 FragmentHelper.manager.popBackStack();
                 break;
             case R.id.withdraw_intro:

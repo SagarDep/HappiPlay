@@ -3,10 +3,12 @@ package com.example.mac.myapplication.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -32,8 +34,11 @@ public class MoneyFragment extends BaseFragment implements View.OnClickListener 
     TextView withdraw;
     @Bind(R.id.list_view)
     ListView listView;
+    @Bind(R.id.message)
+    ImageView message;
     private List<Map<String, Object>> dataList;
-    private Fragment fragment;
+    private Fragment withdrawFragment;
+    private Fragment messageFragment;
     private InputMethodManager imm;
 
     protected void initData() {
@@ -76,13 +81,18 @@ public class MoneyFragment extends BaseFragment implements View.OnClickListener 
     }
 
     protected void initViews() {
-        FragmentHelper.showTab();
 
         String[] from = {"week", "date", "benefit"};
         int[] to = {R.id.benefit_weekday, R.id.benefit_date, R.id.benefit_day_money};
         SimpleAdapter adapter = new SimpleAdapter(getContext(), dataList, R.layout.item_day_benefit, from, to);
         listView.setAdapter(adapter);
         withdraw.setOnClickListener(this);
+        message.setOnClickListener(this);
+    }
+
+    @Override
+    protected void AlwaysInit() {
+        FragmentHelper.showTab();
     }
 
     @Override
@@ -101,14 +111,32 @@ public class MoneyFragment extends BaseFragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.message:
+                if (messageFragment == null) {
+                    messageFragment = new MessageFragment();
+                }
+                FragmentHelper.replaceFragment(R.id.content, messageFragment, "message");
                 break;
             case R.id.withdraw:
-                if (fragment == null) {
-                    fragment = new WithdrawFragment();
+                if (withdrawFragment == null) {
+                    withdrawFragment = new WithdrawFragment();
                 }
-                FragmentHelper.replaceFragment(R.id.content, fragment, "withdraw");
+                Fragment me = FragmentHelper.manager.findFragmentByTag("me");
+                FragmentTransaction transaction = FragmentHelper.manager.beginTransaction();
+                if (me != null) {
+                    transaction.remove(me);
+                }
+                transaction.commit();
+                FragmentHelper.replaceFragment(R.id.content, withdrawFragment, "withdraw");
                 FragmentHelper.hideTab();
                 break;
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,15 +59,23 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener,
         register.setOnClickListener(this);
         forgetPwd.setOnClickListener(this);
 
+    }
+
+    @Override
+    protected void AlwaysInit() {
         if (isLogin()) {
-            if (fragment == null) {
+            Fragment me = FragmentHelper.manager.findFragmentByTag("me");
+            if (me == null || fragment == null) {
+                //me被remove掉了或者fragment没有初始化
                 fragment = new MeFragment();
             }
+
             FragmentTransaction transaction = FragmentHelper.manager.beginTransaction();
             transaction.replace(R.id.content, fragment, "me");
             transaction.commit();
+        } else {
+            FragmentHelper.hideTab();
         }
-        FragmentHelper.hideTab();
     }
 
     @Override

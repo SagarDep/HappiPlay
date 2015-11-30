@@ -68,7 +68,7 @@ public class FragmentHelper {
         transaction.commit();
     }
 
-    public static  void replaceFragment(int frameLayoutId, Fragment fragment, String tag) {
+    public static void replaceFragment(int frameLayoutId, Fragment fragment, String tag) {
 
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(
@@ -137,19 +137,21 @@ public class FragmentHelper {
         transaction.commit();
     }
 
-    public static void showFragment() {
+    public static void showFragment(Fragment fragment) {
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment setting = manager.findFragmentByTag("setting");
         Fragment user_edit = manager.findFragmentByTag("user_edit");
+        Fragment me = manager.findFragmentByTag("me");
+        Fragment withdraw = manager.findFragmentByTag("withdraw");
 
-        Fragment[] fragments = {setting, user_edit};
+        Fragment[] fragments = {setting, user_edit, me, withdraw};
 
-        for (int i = 0; i < manager.getFragments().size(); i++) {
+        for (int i = 0; i < fragments.length; i++) {
             if (manager.getFragments().contains(fragments[i])) {
                 transaction.hide(fragments[i]);
             }
         }
-        transaction.show(setting);
+        transaction.show(fragment);
         transaction.commit();
     }
 }

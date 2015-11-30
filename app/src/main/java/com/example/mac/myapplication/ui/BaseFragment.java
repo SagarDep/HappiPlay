@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import java.lang.reflect.Field;
+
 import butterknife.ButterKnife;
 
 /**

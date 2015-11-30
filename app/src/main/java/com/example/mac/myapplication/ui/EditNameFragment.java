@@ -83,7 +83,6 @@ public class EditNameFragment extends BaseFragment implements View.OnClickListen
 
     }
 
-
     protected void initViews() {
         saveNickname.setOnClickListener(this);
         etNickname.setFocusable(true);

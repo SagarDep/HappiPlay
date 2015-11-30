@@ -5,16 +5,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.mac.myapplication.R;
 import com.example.mac.myapplication.helper.FragmentHelper;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -39,8 +42,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private int indicatorWidth;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
-    private View rootView;
     private Fragment fragment;
+    private MyFragmentPagerAdapter adapter;
 
     private void initButton() {
         setting.setOnClickListener(this);
@@ -64,7 +67,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private void initViewPager() {
         fragments.add(new PagerFragmentAll());
         fragments.add(new PagerFragmentLike());
-        viewPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(), fragments));
+        if (adapter==null){
+            adapter=new MyFragmentPagerAdapter(getChildFragmentManager(), fragments);
+        }
+        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -90,6 +96,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             }
         });
     }
+
 
 
     @Override
@@ -131,7 +138,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         initViewPager();
         initIndicator(2);
         initButton();
+    }
+
+    @Override
+    protected void AlwaysInit() {
         FragmentHelper.showTab();
+//        initViewPager();
     }
 
     @Override
