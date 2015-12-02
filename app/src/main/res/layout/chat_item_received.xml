@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:paddingLeft="8dp"
+              android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/chat_timestamp"
+        style="@style/chat_timestamp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" >
+
+        <ImageView
+            android:id="@+id/chat_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/game_icon"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/chat_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/chat_head"
+            android:autoLink="web"
+            android:background="@drawable/chat_bubble_left_selector"
+            android:gravity="left|center"
+            android:lineSpacingExtra="2dp"
+            android:maxWidth="225.0dip"
+            android:paddingLeft="14dip"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

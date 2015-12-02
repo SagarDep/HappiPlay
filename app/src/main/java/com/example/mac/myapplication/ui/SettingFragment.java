@@ -31,7 +31,6 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private Fragment fragment;
 
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -40,19 +39,17 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
             case R.id.edit_profile:
                 startUserEdit();
-                break;
-            case R.id.back:
-                FragmentHelper.manager.popBackStack();
                 break;
         }
     }
 
     private void startUserEdit() {
-        String tag="user_edit";
-        if (fragment==null){
+        String tag = "user_edit";
+        if (fragment == null) {
             fragment = new UserEditFragment();
         }
         FragmentHelper.replaceFragment(R.id.content, fragment, tag);

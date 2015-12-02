@@ -8,12 +8,14 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+
     <style name="StyledIndicators" parent="@android:style/Theme.Light">
         <item name="vpiCirclePageIndicatorStyle">@style/CustomCirclePageIndicator</item>
         <item name="vpiLinePageIndicatorStyle">@style/CustomLinePageIndicator</item>
         <item name="vpiTitlePageIndicatorStyle">@style/CustomTitlePageIndicator</item>
         <item name="vpiUnderlinePageIndicatorStyle">@style/CustomUnderlinePageIndicator</item>
     </style>
+
     <style name="ToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!--Toolbar背景色-->
         <item name="colorPrimary">@android:color/transparent</item>
@@ -24,6 +26,7 @@
         <item name="actionMenuTextColor">@android:color/holo_green_light</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+
     <style name="DrawerArrowStyle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
         <!--次級界面arrow顏色-->
         <item name="color">@android:color/white</item>
@@ -36,24 +39,30 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:background">@drawable/round_icon</item>
     </style>
+
     <style name="RoundShape">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/round_shape</item>
     </style>
+
     <style name="TextLabel">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">10dp</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
     <style name="UserEditTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
@@ -63,10 +72,12 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">10dp</item>
     </style>
-    <style name="PopupAnimation" parent="android:Animation" mce_bogus="1">
+
+    <style name="PopupAnimation" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/abc_fade_in</item>
         <item name="android:windowExitAnimation">@anim/abc_fade_out</item>
     </style>
+
     <style name="CustomTitlePageIndicator">
         <item name="android:background">#18FF0000</item>
         <item name="footerColor">#FFAA2222</item>
@@ -126,4 +137,16 @@
         <item name="android:textSize">14sp</item>
         <item name="android:imeOptions">actionNext</item>
     </style>
+
+    <style name="chat_timestamp">
+        <item name="android:padding">2dp</item>
+        <item name="android:paddingTop">2dip</item>
+        <item name="android:paddingBottom">2dip</item>
+        <item name="android:paddingLeft">12dip</item>
+        <item name="android:paddingRight">12dip</item>
+        <item name="android:textColor">#c0c0c0</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/timestamp_bg</item>
+    </style>
+
 </resources>

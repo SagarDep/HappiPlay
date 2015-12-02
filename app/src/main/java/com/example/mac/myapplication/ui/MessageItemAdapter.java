@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.custom.BadgeView;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by yons on 15/11/30.
@@ -43,8 +45,16 @@ public class MessageItemAdapter extends RecyclerView.Adapter<MessageViewHolder> 
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, final int position) {
-        View item = mInflater.inflate(R.layout.message_item, null);
-        holder.message_content.setText("message content: "+mData.get(position));
+
+        holder.message_num.setText(String.format("%d", position));
+
+        Random random=new Random();
+        if (random.nextBoolean()){
+            holder.message_num.setVisibility(View.VISIBLE);
+        }else {
+            holder.message_num.setVisibility(View.GONE);
+        }
+        holder.message_content.setText(String.format("message content: %s", mData.get(position)));
 
         if (recyclerViewClick != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {

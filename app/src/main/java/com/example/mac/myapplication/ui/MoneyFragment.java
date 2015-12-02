@@ -14,6 +14,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.custom.BadgeView;
 import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.util.ArrayList;
@@ -109,34 +110,17 @@ public class MoneyFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
-            case R.id.message:
-                if (messageFragment == null) {
-                    messageFragment = new MessageFragment();
-                }
-                FragmentHelper.replaceFragment(R.id.content, messageFragment, "message");
-                break;
             case R.id.withdraw:
                 if (withdrawFragment == null) {
                     withdrawFragment = new WithdrawFragment();
                 }
-                Fragment me = FragmentHelper.manager.findFragmentByTag("me");
-                FragmentTransaction transaction = FragmentHelper.manager.beginTransaction();
-                if (me != null) {
-                    transaction.remove(me);
-                }
-                transaction.commit();
+                FragmentHelper.removeFragmentByTag("me");
                 FragmentHelper.replaceFragment(R.id.content, withdrawFragment, "withdraw");
                 FragmentHelper.hideTab();
                 break;
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 }

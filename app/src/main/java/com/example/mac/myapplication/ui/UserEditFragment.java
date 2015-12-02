@@ -130,6 +130,8 @@ public class UserEditFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
+
         switch (v.getId()) {
             case R.id.edit_birthday:
                 Calendar calendar = Calendar.getInstance();
@@ -165,9 +167,6 @@ public class UserEditFragment extends BaseFragment implements View.OnClickListen
                 startEditName();
                 break;
             case R.id.edit_save:
-                FragmentHelper.manager.popBackStack();
-                break;
-            case R.id.back:
                 FragmentHelper.manager.popBackStack();
                 break;
         }

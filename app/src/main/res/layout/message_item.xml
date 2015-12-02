@@ -2,23 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/message_item"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="68dp"
                 android:gravity="center_vertical"
-                android:background="@color/white"
-                android:padding="6dp">
+                android:background="@drawable/btn_normal_selector"
+                 >
 
     <ImageView
         android:id="@+id/message_user_head"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_margin="6dp"
         android:src="@drawable/game_icon"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/message_user_head"
+        android:padding="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -45,26 +45,34 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="4dp"
+        android:padding="8dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/message_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:text="下午12:43"
             android:textColor="@color/darker_gray"/>
 
         <TextView
             android:id="@+id/message_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center|right"
             android:gravity="center"
-            android:text="紅點"
-            android:textColor="@android:color/holo_red_light"/>
+            android:layout_margin="8dp"
+            android:text="0"
+            android:background="@drawable/round_shape"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
     </LinearLayout>
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"
+        />
 </RelativeLayout>

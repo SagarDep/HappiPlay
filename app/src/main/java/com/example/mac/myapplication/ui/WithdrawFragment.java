@@ -47,11 +47,15 @@ public class WithdrawFragment extends BaseFragment implements View.OnClickListen
     private String userName;
     private String amount;
 
+    @Override
+    protected void AlwaysInit() {
+        withdrawAccount.requestFocus();
+    }
+
     protected void initViews() {
 
         back.setOnClickListener(this);
         withdrawHistory.setOnClickListener(this);
-        withdrawAccount.requestFocus();
         payWay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -81,7 +85,7 @@ public class WithdrawFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
-                if (imm!=null){
+                if (imm != null) {
                     imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
                 }
                 FragmentHelper.manager.popBackStack();

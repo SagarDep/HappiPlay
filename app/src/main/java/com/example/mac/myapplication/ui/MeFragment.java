@@ -45,11 +45,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private Fragment fragment;
     private MyFragmentPagerAdapter adapter;
 
-    private void initButton() {
-        setting.setOnClickListener(this);
-        message.setOnClickListener(this);
-    }
-
     private void initIndicator(int indicatorNum) {
         Display display = getActivity().getWindow().getWindowManager().getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -116,9 +111,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.setting:
                 startSetting();
-
                 break;
             case R.id.message:
+                if (FragmentHelper.messageFragment == null) {
+                    FragmentHelper.messageFragment = new MessageFragment();
+                }
+                FragmentHelper.replaceFragment(R.id.content, FragmentHelper.messageFragment, "message");
                 break;
         }
     }
@@ -137,7 +135,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     protected void initViews() {
         initViewPager();
         initIndicator(2);
-        initButton();
+        setting.setOnClickListener(this);
+        message.setOnClickListener(this);
     }
 
     @Override

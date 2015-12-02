@@ -1,8 +1,11 @@
 package com.example.mac.myapplication.ui;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -10,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.custom.BadgeView;
 import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.util.ArrayList;
@@ -24,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessageFragment extends BaseFragment implements CardAdapter.OnRecyclerViewClickListener {
+public class MessageFragment extends BaseFragment implements CardAdapter.OnRecyclerViewClickListener, View.OnClickListener {
     @Bind(R.id.back)
     ImageView back;
     @Bind(R.id.add)
@@ -33,10 +38,13 @@ public class MessageFragment extends BaseFragment implements CardAdapter.OnRecyc
     RecyclerView recyclerView;
     private List<String> mDataList;
     private MessageItemAdapter adapter;
+    private Fragment chatFragment;
 
 
     protected void initViews() {
         initRecyclerView();
+        back.setOnClickListener(this);
+        add.setOnClickListener(this);
     }
 
     @Override
@@ -47,6 +55,7 @@ public class MessageFragment extends BaseFragment implements CardAdapter.OnRecyc
     @Override
     protected void AlwaysInit() {
         FragmentHelper.hideTab();
+//        adapter.notifyDataSetChanged();
 
     }
 
@@ -58,15 +67,9 @@ public class MessageFragment extends BaseFragment implements CardAdapter.OnRecyc
         adapter = new MessageItemAdapter(getContext(), mDataList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
     @Override
     public void onDestroyView() {
@@ -76,13 +79,37 @@ public class MessageFragment extends BaseFragment implements CardAdapter.OnRecyc
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), position + "message clicked!", Toast.LENGTH_SHORT).show();
+        TextView messageNum= (TextView) view.findViewById(R.id.message_num);
+        messageNum.setVisibility(View.GONE);
+        if (chatFragment==null){
+            chatFragment = new ChatFragment();
+        }
+        FragmentHelper.replaceFragment(R.id.content,chatFragment,"chat");
 
     }
 
     @Override
-    public void onItemLongClick(View view, int position) {
-        Toast.makeText(getContext(), position + "message long clicked!", Toast.LENGTH_SHORT).show();
+    public void onItemLongClick(View view, final int position) {
+        final String[] items = {"标记未读", "删除消息"};
+        new android.app.AlertDialog.Builder(getContext())
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 1) {
+                            mDataList.remove(position);
+                            adapter.notifyItemRemoved(position);
+                            adapter.notifyItemRangeChanged(position, mDataList.size());
+                        }
+                    }
+                }).show();
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+
+        }
     }
 }

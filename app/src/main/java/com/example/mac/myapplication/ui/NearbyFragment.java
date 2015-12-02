@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -16,11 +15,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.helper.FragmentHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 /**
  * Created by yons on 15/9/22.
  */
-public class NearbyFragment extends Fragment implements View.OnClickListener {
+public class NearbyFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.indicator_recent)
     TextView indicatorRecent;
@@ -47,6 +47,10 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
 
     @Bind(R.id.view_pager)
     ViewPager viewPager;
+    @Bind(R.id.camera)
+    ImageView camera;
+    @Bind(R.id.message)
+    ImageView message;
     private RecyclerView mRecyclerView;
     private List<String> mDataList;
     private CardAdapter adapter;
@@ -58,20 +62,24 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
     public static final int USER_GUESS = 1;
     public static final int USER_ONLINE = 2;
     public static final int USER_RECOMMEND = 3;
+    private Fragment messageFragment;
+
+
+    protected void initViews() {
+        initIndicator(4);
+        initViewPager();
+        camera.setOnClickListener(this);
+        message.setOnClickListener(this);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            mContext = getActivity();
-            rootView = inflater.inflate(R.layout.fragment_nearby, container, false);
-            ButterKnife.bind(this, rootView);
-            initIndicator(4);
-            initViewPager();
-        }
+    protected void AlwaysInit() {
+        FragmentHelper.showTab();
+    }
 
-        ButterKnife.bind(this, rootView);
-        return rootView;
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_nearby;
     }
 
     private void initIndicator(int indicatorNum) {
@@ -83,7 +91,6 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tabIndicator.getLayoutParams();
         layoutParams.width = indicatorWidth;
         tabIndicator.setLayoutParams(layoutParams);
-
         indicatorGuess.setOnClickListener(this);
         indicatorOnline.setOnClickListener(this);
         indicatorRecent.setOnClickListener(this);
@@ -106,7 +113,7 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
-                int select=getResources().getColor(R.color.dark_text);
+                int select = getResources().getColor(R.color.dark_text);
 
                 switch (position) {
                     case USER_RECENT:
@@ -136,7 +143,7 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initIndicatorState() {
-        int unSelect=getResources().getColor(R.color.unselect_text);
+        int unSelect = getResources().getColor(R.color.unselect_text);
         indicatorRecent.setTextColor(unSelect);
         indicatorGuess.setTextColor(unSelect);
         indicatorOnline.setTextColor(unSelect);
@@ -177,7 +184,10 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
+
         switch (v.getId()) {
+
             case R.id.indicator_recent:
                 viewPager.setCurrentItem(USER_RECENT);
                 break;
@@ -191,5 +201,13 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
                 viewPager.setCurrentItem(USER_RECOMMEND);
                 break;
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

@@ -56,11 +56,14 @@ public class ForgetPwdFragment extends BaseFragment implements View.OnClickListe
             registerUser.setText(userName);
         }
         registerUser.addTextChangedListener(this);
-        registerUser.requestFocus();
         back.setOnClickListener(this);
         findPwd.setOnClickListener(this);
     }
+    @Override
+    protected void AlwaysInit() {
+        registerUser.requestFocus();
 
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_forget_pwd;

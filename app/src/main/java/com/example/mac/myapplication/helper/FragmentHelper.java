@@ -19,6 +19,7 @@ import com.example.mac.myapplication.ui.UserEditFragment;
  * Created by yons on 15/11/18.
  */
 public class FragmentHelper {
+    public static Fragment messageFragment;
 
     private FragmentActivity activity;
 
@@ -35,6 +36,15 @@ public class FragmentHelper {
 
     public static void showTab() {
         MainActivity.getTabhost().setVisibility(View.VISIBLE);
+    }
+
+    public static void removeFragmentByTag(String fragmentTag) {
+        Fragment fragment = manager.findFragmentByTag(fragmentTag);
+        FragmentTransaction transaction = FragmentHelper.manager.beginTransaction();
+        if (fragment != null) {
+            transaction.remove(fragment);
+        }
+        transaction.commit();
     }
 
     public static <T extends Fragment> void replaceFragment(

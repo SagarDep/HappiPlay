@@ -64,7 +64,6 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
             userName = getArguments().getString("userName");
             registerUser.setText(userName);
         }
-        registerUser.requestFocus();
         registerUser.addTextChangedListener(this);
         registerPwd.addTextChangedListener(this);
         back.setOnClickListener(this);
@@ -82,6 +81,12 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                 }
             }
         });
+    }
+
+    @Override
+    protected void AlwaysInit() {
+        registerUser.requestFocus();
+
     }
 
     @Override

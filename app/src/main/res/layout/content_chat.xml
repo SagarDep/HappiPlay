@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                tools:context="com.example.mac.myapplication.ui.ChatFragment">
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/recycler_view"
+        android:background="@color/line"/>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_send_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="6dp">
+
+
+        <ImageView
+            android:id="@+id/chat_emoji"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chat_emoji_selector"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_round_frame"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="6dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@color/dark_text"/>
+
+    </LinearLayout>
+</RelativeLayout>
+
