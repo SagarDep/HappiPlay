@@ -6,8 +6,12 @@
                 tools:context="com.example.mac.myapplication.ui.ChatFragment">
 
 
-
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_send_bar"
+        android:paddingBottom="8dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

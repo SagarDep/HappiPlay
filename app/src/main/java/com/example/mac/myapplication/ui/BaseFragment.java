@@ -27,7 +27,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     private Fragment fragment;
     private InputMethodManager imm;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

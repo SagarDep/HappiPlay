@@ -41,17 +41,17 @@
         android:layout_marginTop="12dp">
 
         <TextView
-            android:id="@+id/indicator_recent"
+            android:id="@+id/indicator_leg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:src="@drawable/all_select"
             android:text="最近更新"
-            android:textColor="@color/unselect_text"/>
+            android:textColor="@color/dark_text"/>
 
         <TextView
-            android:id="@+id/indicator_guess"
+            android:id="@+id/indicator_butt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -61,7 +61,7 @@
             android:textColor="@color/unselect_text"/>
 
         <TextView
-            android:id="@+id/indicator_online"
+            android:id="@+id/indicator_boob"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -71,7 +71,7 @@
             android:textColor="@color/unselect_text"/>
 
         <TextView
-            android:id="@+id/indicator_recommend"
+            android:id="@+id/indicator_stocking"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -87,6 +87,8 @@
         android:layout_height="2dp"
         android:layout_marginTop="12dp"
         android:background="@color/light_text"/>
+
+
     <android.support.v4.view.ViewPager
         android:background="@color/app_back"
         android:id="@+id/view_pager"

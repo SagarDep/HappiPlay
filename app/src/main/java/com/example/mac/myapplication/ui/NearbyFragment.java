@@ -1,20 +1,16 @@
 package com.example.mac.myapplication.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,13 +30,13 @@ import butterknife.ButterKnife;
  */
 public class NearbyFragment extends BaseFragment implements View.OnClickListener {
 
-    @Bind(R.id.indicator_recent)
+    @Bind(R.id.indicator_leg)
     TextView indicatorRecent;
-    @Bind(R.id.indicator_guess)
+    @Bind(R.id.indicator_butt)
     TextView indicatorGuess;
-    @Bind(R.id.indicator_online)
+    @Bind(R.id.indicator_boob)
     TextView indicatorOnline;
-    @Bind(R.id.indicator_recommend)
+    @Bind(R.id.indicator_stocking)
     TextView indicatorRecommend;
     @Bind(R.id.tab_indicator)
     View tabIndicator;
@@ -54,10 +50,8 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
     private RecyclerView mRecyclerView;
     private List<String> mDataList;
     private CardAdapter adapter;
-    private Context mContext;
     private int indicatorWidth;
     private ArrayList<Fragment> fragments = new ArrayList<>();
-    private View rootView;
     public static final int USER_RECENT = 0;
     public static final int USER_GUESS = 1;
     public static final int USER_ONLINE = 2;
@@ -188,26 +182,19 @@ public class NearbyFragment extends BaseFragment implements View.OnClickListener
 
         switch (v.getId()) {
 
-            case R.id.indicator_recent:
+            case R.id.indicator_leg:
                 viewPager.setCurrentItem(USER_RECENT);
                 break;
-            case R.id.indicator_guess:
+            case R.id.indicator_butt:
                 viewPager.setCurrentItem(USER_GUESS);
                 break;
-            case R.id.indicator_online:
+            case R.id.indicator_boob:
                 viewPager.setCurrentItem(USER_ONLINE);
                 break;
-            case R.id.indicator_recommend:
+            case R.id.indicator_stocking:
                 viewPager.setCurrentItem(USER_RECOMMEND);
                 break;
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 }

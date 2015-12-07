@@ -37,19 +37,20 @@
 
     </FrameLayout>
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_send_bar"
+        android:layout_below="@+id/action_bar"
         android:paddingBottom="8dp"
-        android:layout_below="@+id/action_bar"/>
+        />
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/recycler_view"
+        android:layout_below="@+id/recycler_view_rl"
         android:background="@color/line"/>
 
 
@@ -72,21 +73,25 @@
             android:src="@drawable/chat_emoji_selector"/>
 
         <EditText
+            android:id="@+id/chat_to_send"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
+            android:background="@drawable/btn_round_frame"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/btn_round_frame"
             android:padding="6dp"/>
 
         <TextView
+            android:id="@+id/chat_send"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="发送"
+            android:textStyle="bold"
+            android:background="@drawable/text_button_selector"
             android:textColor="@color/dark_text"/>
 
     </LinearLayout>

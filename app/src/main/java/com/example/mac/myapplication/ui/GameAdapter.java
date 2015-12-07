@@ -35,7 +35,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameItemHolder>{
     public GameItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view=mInflater.inflate(R.layout.game_play_item,parent, false);
         GameItemHolder holder = new GameItemHolder(view);
-        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
         return holder;
     }
 

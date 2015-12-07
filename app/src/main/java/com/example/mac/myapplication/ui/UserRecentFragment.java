@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mac.myapplication.R;
@@ -24,34 +22,17 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserRecentFragment extends Fragment implements CardAdapter.OnRecyclerViewClickListener {
+public class UserRecentFragment extends BaseFragment implements CardAdapter.OnRecyclerViewClickListener {
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
     @Bind(R.id.go_top)
     ImageView goTop;
     private List<String> mDataList;
     private CardAdapter adapter;
-    private View rootView;
 
-    public UserRecentFragment() {
-        // Required empty public constructor
-    }
+    protected void initViews() {
+        initRecyclerView();
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_user_recent, null);
-            ButterKnife.bind(this, rootView);
-            initRecyclerView();
-            initViews();
-        }
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    private void initViews() {
         goTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +40,11 @@ public class UserRecentFragment extends Fragment implements CardAdapter.OnRecycl
                 goTop.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_recycler_withtop;
     }
 
     private void initRecyclerView() {
@@ -72,8 +58,8 @@ public class UserRecentFragment extends Fragment implements CardAdapter.OnRecycl
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                    int position = recyclerView.computeVerticalScrollOffset();
-                    goTop.setVisibility(position>4500?View.VISIBLE:View.GONE);
+                int position = recyclerView.computeVerticalScrollOffset();
+                goTop.setVisibility(position > 2500 ? View.VISIBLE : View.GONE);
             }
 
             @Override
@@ -83,12 +69,6 @@ public class UserRecentFragment extends Fragment implements CardAdapter.OnRecycl
             }
         });
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     @Override

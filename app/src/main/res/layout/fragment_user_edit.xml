@@ -64,6 +64,7 @@
             android:id="@+id/edit_nickname"
             style="@style/UserEditTextView"
             android:drawableLeft="@drawable/user_name"
+            android:textAllCaps="false"
             android:text="用戶暱稱"/>
 
         <Button

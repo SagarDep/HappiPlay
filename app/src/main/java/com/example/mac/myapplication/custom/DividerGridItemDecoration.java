@@ -16,6 +16,8 @@ import android.support.v7.widget.RecyclerView.State;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
+import com.example.mac.myapplication.R;
+
 /**
  * @author zhy
  */

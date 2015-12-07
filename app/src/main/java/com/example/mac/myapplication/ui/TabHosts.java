@@ -11,7 +11,7 @@ public enum TabHosts {
             NearbyFragment.class),
 
     ACTIVITY(2, R.string.activity, R.drawable.indicator_box_selector,
-            GamePlayFragment.class),
+            BoxFragment.class),
 
     USER(3, R.string.user, R.drawable.indicator_me_selector,
             LoginFragment.class);

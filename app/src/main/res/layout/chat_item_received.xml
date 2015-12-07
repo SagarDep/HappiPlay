@@ -10,14 +10,14 @@
     <TextView
         android:id="@+id/chat_timestamp"
         style="@style/chat_timestamp"
-        android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" >
+        android:layout_marginTop="5dp">
 
         <ImageView
             android:id="@+id/chat_head"
@@ -26,14 +26,13 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/game_icon"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/game_icon"/>
 
         <TextView
             android:id="@+id/chat_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="50dp"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/chat_head"
             android:autoLink="web"
@@ -41,8 +40,10 @@
             android:gravity="left|center"
             android:lineSpacingExtra="2dp"
             android:maxWidth="225.0dip"
-            android:paddingLeft="14dip"
-            android:textSize="15sp" />
+            android:minHeight="48dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:textSize="15sp"/>
 
     </RelativeLayout>
 

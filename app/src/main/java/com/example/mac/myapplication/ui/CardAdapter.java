@@ -2,7 +2,6 @@ package com.example.mac.myapplication.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mac.myapplication.R;
 
 import java.util.List;
@@ -49,10 +47,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, final int position) {
-        View view = mInflater.inflate(R.layout.fragment_user_recent, null);
-        ImageView goTop = (ImageView) view.findViewById(R.id.go_top);
-        goTop.setVisibility(position > 10 ? View.VISIBLE : View.GONE);
-
         holder.user_name.setText(mData.get(position));
 
         int resId = mContext.getResources().getIdentifier("img_" + position, "drawable", mContext.getPackageName());

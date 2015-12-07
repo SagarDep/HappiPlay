@@ -42,6 +42,7 @@ public class GridAdapter extends BaseAdapter {
         if (view==null){
             view=LayoutInflater.from(mContext).inflate(R.layout.grid_item, null);
             imageView= (ImageView) view.findViewById(R.id.grid_image);
+
             view.setTag(imageView);
 //            card_img = new ImageView(mContext);
 //            card_img.setLayoutParams(new GridView.LayoutParams(90,90));
@@ -50,6 +51,9 @@ public class GridAdapter extends BaseAdapter {
         }else{
             imageView = (ImageView)view.getTag();
         }
+        ViewGroup.LayoutParams params = imageView.getLayoutParams();
+        params.height = 95;
+        imageView.setLayoutParams(params);
         imageView.setImageResource(imgIds[i]);
         return view;
     }

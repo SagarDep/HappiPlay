@@ -297,6 +297,7 @@ public class UserEditFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void sendText(String text) {
         nickName = text;
+        Log.i("test",nickName);
         editNickname = (TextView) rootView.findViewById(R.id.edit_nickname);
         editNickname.setText(nickName);
     }

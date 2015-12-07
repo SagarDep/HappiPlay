@@ -64,7 +64,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ChatViewHolder holder, int position) {
+    public void onBindViewHolder(ChatViewHolder holder, final int position) {
         ChatMessage message = chatMessages.get(position);
 
         String[] timeStamps = message.getTimeStamp().split(":");
@@ -83,10 +83,20 @@ public class ChatMessageAdapter extends RecyclerView.Adapter<ChatViewHolder> {
 
         holder.chat_timestamp.setText(timeStamp.toString());
         holder.chat_content.setText(message.getChatContent());
-        if (new Random().nextBoolean()){
+        if (position%3==0){
             holder.chat_timestamp.setVisibility(View.VISIBLE);
         }else {
             holder.chat_timestamp.setVisibility(View.GONE);
+        }
+
+        if (recyclerViewClick!=null){
+            holder.chat_content.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    recyclerViewClick.onItemLongClick(v,position);
+                    return true;
+                }
+            });
         }
 
     }

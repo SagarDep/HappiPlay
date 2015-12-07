@@ -75,13 +75,6 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener, 
         initTabs();
     }
 
-    private void initFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment homeFragment = new HomeFragment();
-        transaction.replace(R.id.content, homeFragment);
-        transaction.commit();
-    }
 
     @Override
     protected void onResume() {

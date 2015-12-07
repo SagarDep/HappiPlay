@@ -1,27 +1,21 @@
 package com.example.mac.myapplication.ui;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.mac.myapplication.R;
 import com.example.mac.myapplication.helper.FragmentHelper;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,12 +32,17 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     ImageView message;
     @Bind(R.id.setting)
     ImageView setting;
+    @Bind(R.id.upload_picture)
+    Button uploadPicture;
+    @Bind(R.id.browse_picture)
+    Button browsePicture;
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private int indicatorWidth;
     @Bind(R.id.view_pager)
     ViewPager viewPager;
-    private Fragment fragment;
+    private Fragment settingFragment;
     private MyFragmentPagerAdapter adapter;
+    private Fragment beautyfragment;
 
     private void initIndicator(int indicatorNum) {
         Display display = getActivity().getWindow().getWindowManager().getDefaultDisplay();
@@ -62,8 +61,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private void initViewPager() {
         fragments.add(new PagerFragmentAll());
         fragments.add(new PagerFragmentLike());
-        if (adapter==null){
-            adapter=new MyFragmentPagerAdapter(getChildFragmentManager(), fragments);
+        if (adapter == null) {
+            adapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragments);
         }
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -92,14 +91,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         });
     }
 
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -112,6 +103,14 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.setting:
                 startSetting();
                 break;
+            case R.id.browse_picture:
+                if (beautyfragment == null) {
+                    beautyfragment = new BeautyFragment();
+                }
+                FragmentHelper.replaceFragment(R.id.content, beautyfragment, "beauty");
+                break;
+            case R.id.upload_picture:
+                break;
             case R.id.message:
                 if (FragmentHelper.messageFragment == null) {
                     FragmentHelper.messageFragment = new MessageFragment();
@@ -123,10 +122,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
 
     private void startSetting() {
-        if (fragment == null) {
-            fragment = new SettingFragment();
+        if (settingFragment == null) {
+            settingFragment = new SettingFragment();
         }
-        FragmentHelper.replaceFragment(R.id.content, fragment, "setting");
+        FragmentHelper.replaceFragment(R.id.content, settingFragment, "setting");
         FragmentHelper.hideTab();
     }
 
@@ -149,4 +148,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     protected int getLayoutId() {
         return R.layout.fragment_me;
     }
+
+
 }

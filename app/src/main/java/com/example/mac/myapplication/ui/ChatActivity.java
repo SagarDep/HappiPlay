@@ -21,8 +21,6 @@ import butterknife.ButterKnife;
 
 public class ChatActivity extends AppCompatActivity implements CardAdapter.OnRecyclerViewClickListener {
 
-    @Bind(R.id.back)
-    ImageView back;
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
     private List<ChatMessage> chatMessages;
