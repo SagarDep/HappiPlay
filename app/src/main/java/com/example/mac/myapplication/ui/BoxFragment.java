@@ -49,18 +49,7 @@ public class BoxFragment extends BaseFragment implements CardAdapter.OnRecyclerV
     protected void initViews() {
         adapter = new GameAdapter(getContext(), mDataList, this);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerGridItemDecoration(getContext()));
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                super.getItemOffsets(outRect, view, parent, state);
-            }
-
-            @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                super.onDraw(c, parent, state);
-            }
-        });
+//        recyclerView.addItemDecoration(new DividerGridItemDecoration(getContext()));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         initSegment();
     }

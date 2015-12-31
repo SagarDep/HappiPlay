@@ -83,13 +83,14 @@ public class WithdrawFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
-            case R.id.back:
-                if (imm != null) {
-                    imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
-                }
-                FragmentHelper.manager.popBackStack();
-                break;
+//            case R.id.back:
+//                if (imm != null) {
+//                    imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
+//                }
+//                FragmentHelper.manager.popBackStack();
+//                break;
             case R.id.withdraw_intro:
                 Bundle data = new Bundle();
                 data.putString("url", "http://www.baidu.com");

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Volumes/MAC3/HappiPlay/Project/CityChoose/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/Users/happi/workspace/happiplay-android/CityChoose/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <color name="app_style">#f8f8f8</color>
     <string name="address_found">address_found</string>

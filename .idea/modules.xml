@@ -6,12 +6,13 @@
       <module fileurl="file://$PROJECT_DIR$/ImageSlider/ImageSlider.iml" filepath="$PROJECT_DIR$/ImageSlider/ImageSlider.iml" />
       <module fileurl="file://$PROJECT_DIR$/Indicator/Indicator.iml" filepath="$PROJECT_DIR$/Indicator/Indicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/PagerSlidingTabStrip/PagerSlidingTabStrip.iml" filepath="$PROJECT_DIR$/PagerSlidingTabStrip/PagerSlidingTabStrip.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Project.iml" filepath="$PROJECT_DIR$/Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/QQSegment/QQSegment.iml" filepath="$PROJECT_DIR$/QQSegment/QQSegment.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/happiplay-android.iml" filepath="$PROJECT_DIR$/happiplay-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoview/photoview.iml" filepath="$PROJECT_DIR$/photoview/photoview.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
     </modules>
   </component>
 </project>
+
