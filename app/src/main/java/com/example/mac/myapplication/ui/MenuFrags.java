@@ -3,6 +3,7 @@ package com.example.mac.myapplication.ui;
 import android.support.v4.app.Fragment;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.fragment.NearbyFragment;
 
 /**
  * Created by yons on 15/9/22.

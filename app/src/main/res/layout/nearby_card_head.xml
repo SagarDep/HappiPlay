@@ -13,6 +13,38 @@
         android:scaleType="centerCrop"
         android:src="@android:drawable/sym_def_app_icon"/>
 
+
+    <!-- 年龄标签，横向线性布局  为了防止视图不被挤压 所以写在前面-->
+    <!--android:layout_toEndOf="@id/user_ll"-->
+    <!--android:layout_toRightOf="@id/user_ll"-->
+    <LinearLayout
+        android:id="@+id/user_age_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@color/blue_light"
+        android:paddingEnd="3dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingStart="3dp">
+
+        <ImageView
+            android:id="@+id/age_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sex_male"/>
+
+        <TextView
+            android:id="@+id/user_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+
     <!-- 姓名、城市.纵向的线性布局-->
     <LinearLayout
         android:id="@+id/user_ll"
@@ -26,6 +58,8 @@
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:layout_weight="1"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
@@ -37,63 +71,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:gravity="bottom"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="上海"
             android:textSize="12sp"/>
     </LinearLayout>
-    <!-- 年龄标签，横向线性布局-->
+
+
     <LinearLayout
-        android:id="@+id/user_age_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/user_ll"
-        android:layout_toRightOf="@id/user_ll"
-        android:background="@android:color/holo_blue_light"
-        android:paddingEnd="3dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingStart="3dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/sex_male"/>
-
-        <TextView
-            android:id="@+id/user_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="21"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="岁"
-            android:textColor="@android:color/white"
-            android:textSize="10sp"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/photo_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="13"
-        android:textSize="10sp"/>
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/photo_num"
-        android:layout_toStartOf="@id/photo_num"
-        android:src="@drawable/upload_camera"/>
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/upload_camera"/>
+
+        <TextView
+            android:id="@+id/photo_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:text="13"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

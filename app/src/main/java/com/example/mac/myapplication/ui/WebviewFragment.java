@@ -2,14 +2,11 @@ package com.example.mac.myapplication.ui;
 
 
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -17,6 +14,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.fragment.BaseFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -102,4 +100,6 @@ public class WebviewFragment extends BaseFragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
+
 }

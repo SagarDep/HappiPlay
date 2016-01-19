@@ -17,8 +17,8 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.adapter.GridAdapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 

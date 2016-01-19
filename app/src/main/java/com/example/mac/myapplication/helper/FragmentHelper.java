@@ -1,7 +1,5 @@
 package com.example.mac.myapplication.helper;
 
-import android.app.Activity;
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -9,11 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
-import com.example.mac.myapplication.MainActivity;
+import com.example.mac.myapplication.ui.activity.MainActivity;
 import com.example.mac.myapplication.R;
-import com.example.mac.myapplication.ui.MeFragment;
-import com.example.mac.myapplication.ui.SettingFragment;
-import com.example.mac.myapplication.ui.UserEditFragment;
 
 /**
  * Created by yons on 15/11/18.

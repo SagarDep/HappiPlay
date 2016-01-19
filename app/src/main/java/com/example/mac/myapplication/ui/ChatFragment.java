@@ -17,6 +17,9 @@ import android.widget.TextView;
 import com.example.mac.myapplication.R;
 import com.example.mac.myapplication.bean.ChatMessage;
 import com.example.mac.myapplication.helper.UiHelper;
+import com.example.mac.myapplication.ui.adapter.CardAdapter;
+import com.example.mac.myapplication.ui.adapter.ChatMessageAdapter;
+import com.example.mac.myapplication.ui.fragment.BaseFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatFragment extends BaseFragment implements CardAdapter.OnRecyclerViewClickListener {
+public class ChatFragment extends BaseFragment implements CardAdapter.OnRecyclerViewClickListener ,View.OnClickListener{
 
 
     @Bind(R.id.back)
@@ -136,7 +139,7 @@ public class ChatFragment extends BaseFragment implements CardAdapter.OnRecycler
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
+        //super.onClick(v);
         switch (v.getId()) {
             case R.id.chat_send:
                 toSend = chatToSend.getText().toString();

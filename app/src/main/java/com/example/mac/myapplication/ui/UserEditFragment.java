@@ -3,22 +3,17 @@ package com.example.mac.myapplication.ui;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -27,8 +22,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -39,6 +32,8 @@ import android.widget.TextView;
 import com.droid.CityChooseActivity;
 import com.example.mac.myapplication.R;
 import com.example.mac.myapplication.helper.FragmentHelper;
+import com.example.mac.myapplication.ui.activity.BaseActivity;
+import com.example.mac.myapplication.ui.fragment.BaseFragment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -130,7 +125,7 @@ public class UserEditFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
+        //super.onClick(v);
 
         switch (v.getId()) {
             case R.id.edit_birthday:

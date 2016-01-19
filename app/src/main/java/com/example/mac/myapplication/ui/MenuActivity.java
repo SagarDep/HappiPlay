@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.activity.BaseActivity;
 
 public class MenuActivity extends BaseActivity implements EditNameFragment.UpdateTextListener {
     private MenuFrags menuFrags;

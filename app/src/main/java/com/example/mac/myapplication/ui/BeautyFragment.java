@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.adapter.MyFragmentPagerAdapter;
+import com.example.mac.myapplication.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ import butterknife.Bind;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BeautyFragment extends BaseFragment {
+public class BeautyFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.indicator_leg)
     TextView indicatorLeg;
@@ -118,7 +120,7 @@ public class BeautyFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
+        //super.onClick(v);
 
         switch (v.getId()) {
             case R.id.indicator_leg:

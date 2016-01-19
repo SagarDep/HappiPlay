@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:background="@color/white"
               android:orientation="vertical"
-              tools:context="com.example.mac.myapplication.ui.MeFragment">
+              tools:context="com.example.mac.myapplication.ui.fragment.MeFragment">
 
     <include layout="@layout/action_bar"/>
 
@@ -15,11 +15,21 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-        <ImageView
+
+
+        <com.example.mac.myapplication.view.CircularImage
+            android:id="@+id/avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/game_icon"/>
+            android:src="@drawable/game_icon" />
+
+        <!--<ImageView-->
+            <!--android:id="@+id/avatar"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@drawable/game_icon"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,12 +38,14 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/fensi_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/fensi_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="278"
@@ -49,6 +61,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/xihuan_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="36dp"
@@ -56,6 +69,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/xihuan_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="28"

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.activity.BaseActivity;
 
 import java.util.ArrayList;
 

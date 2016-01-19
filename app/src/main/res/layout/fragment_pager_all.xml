@@ -5,11 +5,10 @@
              android:background="@android:color/darker_gray"
              tools:context="com.example.mac.myapplication.ui.PagerFragmentAll">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/app_back"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="all"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

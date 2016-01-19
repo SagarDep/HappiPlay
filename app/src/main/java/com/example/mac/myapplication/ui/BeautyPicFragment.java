@@ -1,22 +1,21 @@
 package com.example.mac.myapplication.ui;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.mac.myapplication.R;
+import com.example.mac.myapplication.ui.adapter.BeatuyPicAdapter;
+import com.example.mac.myapplication.ui.adapter.CardAdapter;
+import com.example.mac.myapplication.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 
 /**
@@ -85,4 +84,6 @@ public class BeautyPicFragment extends BaseFragment implements CardAdapter.OnRec
     public void onItemLongClick(View view, int position) {
 
     }
+
+
 }
