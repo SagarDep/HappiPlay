@@ -1,6 +1,5 @@
 # HappiPlay
-A project of Chinese style.
-公司的一个社区类app。
+公司的一个社区类app。非常典型的tabHost布局
 
 ## 截图
 
